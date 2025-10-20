@@ -1,0 +1,11 @@
+[[redirects]]
+  from = "/api/*"
+  to = "https://krishna-care-backend.onrender.com/api/:splat"
+  status = 200
+  force = true
+
+# SPA routing - redirect all routes to index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
