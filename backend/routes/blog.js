@@ -1,6 +1,6 @@
 import express from 'express';
 import Blog from '../models/Blog.js';
-import { protect, authorize } from '../middleware/auth.js';
+import { protect, authorize, optionalAuth } from '../middleware/auth.js';
 import { upload, handleMulterError } from '../middleware/upload.js';
 
 const router = express.Router();
@@ -8,15 +8,21 @@ const router = express.Router();
 // @route   GET /api/blogs
 // @desc    Get all published blogs (public) or all blogs (admin)
 // @access  Public
-router.get('/', async (req, res) => {
+router.get('/', optionalAuth, async (req, res) => {
   try {
     const { category, search, page = 1, limit = 10 } = req.query;
-    
+
     let query = {};
-    
+
+    // Debug logging
+    console.log('GET /api/blogs - User:', req.user ? `${req.user.email} (${req.user.role})` : 'Not authenticated');
+
     // Non-admin users only see published blogs
     if (!req.user || req.user.role !== 'admin') {
       query.isPublished = true;
+      console.log('Filtering for published blogs only');
+    } else {
+      console.log('Admin user - showing all blogs');
     }
     
     // Filter by category
@@ -60,29 +66,46 @@ router.get('/', async (req, res) => {
 // @access  Public
 router.get('/:id', async (req, res) => {
   try {
-    const blog = await Blog.findOne({
-      $or: [
-        { _id: req.params.id },
-        { slug: req.params.id }
-      ]
-    });
-    
+    const paramId = req.params.id;
+    let blog;
+
+    // Check if the param is a valid ObjectId format (24 hex characters)
+    const isValidObjectId = /^[0-9a-fA-F]{24}$/.test(paramId);
+
+    if (isValidObjectId) {
+      // Try finding by ID or slug
+      blog = await Blog.findOne({
+        $or: [
+          { _id: paramId },
+          { slug: paramId }
+        ]
+      });
+    } else {
+      // Only search by slug if not a valid ObjectId
+      blog = await Blog.findOne({ slug: paramId });
+    }
+
     if (!blog) {
       return res.status(404).json({
         success: false,
         message: 'Blog not found'
       });
     }
-    
-    // Increment views
-    blog.views += 1;
-    await blog.save();
-    
+
+    // Increment views - use findByIdAndUpdate to avoid validation issues with old data
+    try {
+      await Blog.findByIdAndUpdate(blog._id, { $inc: { views: 1 } }, { runValidators: false });
+    } catch (viewError) {
+      console.error('Error incrementing views:', viewError);
+      // Continue even if view increment fails
+    }
+
     res.json({
       success: true,
       data: blog
     });
   } catch (error) {
+    console.error('Error fetching blog:', error);
     res.status(500).json({
       success: false,
       message: error.message
@@ -96,27 +119,48 @@ router.get('/:id', async (req, res) => {
 router.post('/', protect, authorize('admin'), upload.single('featuredImage'), handleMulterError, async (req, res) => {
   try {
     const blogData = {
-      ...req.body,
+      title: {
+        en: req.body['title.en'],
+        hi: req.body['title.hi'] || ''
+      },
+      excerpt: {
+        en: req.body['excerpt.en'],
+        hi: req.body['excerpt.hi'] || ''
+      },
+      content: {
+        en: req.body['content.en'],
+        hi: req.body['content.hi'] || ''
+      },
+      category: req.body.category,
+      author: req.body.author,
+      authorBio: req.body.authorBio || '',
+      readTime: req.body.readTime || '5 min read',
+      isPublished: req.body.isPublished === 'true',
       createdBy: req.user.id
     };
-    
+
     // Add image URL if uploaded
     if (req.file) {
       blogData.featuredImage = `/uploads/blogs/${req.file.filename}`;
     }
-    
-    // Parse tags if it's a string
-    if (typeof blogData.tags === 'string') {
-      blogData.tags = blogData.tags.split(',').map(tag => tag.trim());
+
+    // Parse tags if provided
+    if (req.body.tags) {
+      if (typeof req.body.tags === 'string') {
+        blogData.tags = req.body.tags.split(',').map(tag => tag.trim()).filter(tag => tag);
+      } else if (Array.isArray(req.body.tags)) {
+        blogData.tags = req.body.tags;
+      }
     }
-    
+
     const blog = await Blog.create(blogData);
-    
+
     res.status(201).json({
       success: true,
       data: blog
     });
   } catch (error) {
+    console.error('Blog creation error:', error);
     res.status(500).json({
       success: false,
       message: error.message
@@ -130,37 +174,60 @@ router.post('/', protect, authorize('admin'), upload.single('featuredImage'), ha
 router.put('/:id', protect, authorize('admin'), upload.single('featuredImage'), handleMulterError, async (req, res) => {
   try {
     let blog = await Blog.findById(req.params.id);
-    
+
     if (!blog) {
       return res.status(404).json({
         success: false,
         message: 'Blog not found'
       });
     }
-    
-    const updateData = { ...req.body };
-    
+
+    const updateData = {
+      title: {
+        en: req.body['title.en'],
+        hi: req.body['title.hi'] || ''
+      },
+      excerpt: {
+        en: req.body['excerpt.en'],
+        hi: req.body['excerpt.hi'] || ''
+      },
+      content: {
+        en: req.body['content.en'],
+        hi: req.body['content.hi'] || ''
+      },
+      category: req.body.category,
+      author: req.body.author,
+      authorBio: req.body.authorBio || '',
+      readTime: req.body.readTime || '5 min read',
+      isPublished: req.body.isPublished === 'true'
+    };
+
     // Add new image if uploaded
     if (req.file) {
       updateData.featuredImage = `/uploads/blogs/${req.file.filename}`;
     }
-    
-    // Parse tags if it's a string
-    if (typeof updateData.tags === 'string') {
-      updateData.tags = updateData.tags.split(',').map(tag => tag.trim());
+
+    // Parse tags if provided
+    if (req.body.tags) {
+      if (typeof req.body.tags === 'string') {
+        updateData.tags = req.body.tags.split(',').map(tag => tag.trim()).filter(tag => tag);
+      } else if (Array.isArray(req.body.tags)) {
+        updateData.tags = req.body.tags;
+      }
     }
-    
+
     blog = await Blog.findByIdAndUpdate(
       req.params.id,
       updateData,
       { new: true, runValidators: true }
     );
-    
+
     res.json({
       success: true,
       data: blog
     });
   } catch (error) {
+    console.error('Blog update error:', error);
     res.status(500).json({
       success: false,
       message: error.message

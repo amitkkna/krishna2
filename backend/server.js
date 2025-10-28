@@ -11,6 +11,7 @@ import authRoutes from './routes/auth.js';
 import blogRoutes from './routes/blog.js';
 import galleryRoutes from './routes/gallery.js';
 import contactRoutes from './routes/contact.js';
+import newsletterRoutes from './routes/newsletter.js';
 
 // ES Module fix for __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -53,6 +54,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/blogs', blogRoutes);
 app.use('/api/gallery', galleryRoutes);
 app.use('/api/contacts', contactRoutes);
+app.use('/api/newsletter', newsletterRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

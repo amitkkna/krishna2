@@ -61,3 +61,31 @@ export const authorize = (...roles) => {
     next();
   };
 };
+
+// Optional auth - attaches user if token exists, but doesn't fail if no token
+export const optionalAuth = async (req, res, next) => {
+  try {
+    let token;
+
+    // Check for token in headers
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+      token = req.headers.authorization.split(' ')[1];
+    }
+
+    if (token) {
+      try {
+        // Verify token
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        // Get user from token
+        req.user = await User.findById(decoded.id).select('-password');
+      } catch (error) {
+        // Silently continue without user if token is invalid
+      }
+    }
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+};

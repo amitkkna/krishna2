@@ -21,13 +21,15 @@ const galleryDir = path.join(uploadDir, 'gallery');
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     let uploadPath = uploadDir;
-    
+
     if (req.baseUrl.includes('/blog')) {
       uploadPath = blogDir;
     } else if (req.baseUrl.includes('/gallery')) {
+      // For gallery, upload to base gallery directory first
+      // We'll move to folder after upload is complete
       uploadPath = galleryDir;
     }
-    
+
     cb(null, uploadPath);
   },
   filename: (req, file, cb) => {

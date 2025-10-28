@@ -1,83 +1,57 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowRight, FaSearch, FaCalendar, FaUser } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { blogService } from '../services/apiService';
+import { toast } from 'react-toastify';
+import { useLanguage } from '../context/LanguageContext';
 
 const Blog = () => {
+  const { language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const categories = ['all', 'Technology', 'Insights', 'Case Studies', 'Sustainability', 'Industry News'];
+  const categories = ['all', 'Logistics', 'Technology', 'Supply Chain', 'News', 'Case Study'];
 
-  const blogPosts = [
-    {
-      id: '1',
-      title: 'The Future of Logistics: AI and Automation',
-      excerpt: 'Discover how artificial intelligence is revolutionizing the logistics industry and what it means for businesses.',
-      category: 'Technology',
-      date: 'Oct 5, 2025',
-      author: 'Amit Patel',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800',
-      readTime: '5 min read'
-    },
-    {
-      id: '2',
-      title: '5 Ways to Optimize Your Supply Chain',
-      excerpt: 'Learn practical strategies to improve efficiency and reduce costs in your supply chain operations.',
-      category: 'Insights',
-      date: 'Oct 1, 2025',
-      author: 'Priya Sharma',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800',
-      readTime: '7 min read'
-    },
-    {
-      id: '3',
-      title: 'Sustainable Logistics: Our Commitment',
-      excerpt: 'How Krishna Care is leading the way in environmentally responsible logistics practices.',
-      category: 'Sustainability',
-      date: 'Sep 28, 2025',
-      author: 'Rajesh Kumar',
-      image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800',
-      readTime: '4 min read'
-    },
-    {
-      id: '4',
-      title: 'Case Study: Transforming XYZ Manufacturing',
-      excerpt: 'How we helped a leading manufacturer reduce logistics costs by 30% while improving delivery times.',
-      category: 'Case Studies',
-      date: 'Sep 25, 2025',
-      author: 'Sneha Reddy',
-      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=800',
-      readTime: '8 min read'
-    },
-    {
-      id: '5',
-      title: 'IoT in Logistics: Real-Time Visibility',
-      excerpt: 'Exploring how Internet of Things technology provides unprecedented supply chain visibility.',
-      category: 'Technology',
-      date: 'Sep 20, 2025',
-      author: 'Amit Patel',
-      image: 'https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=800',
-      readTime: '6 min read'
-    },
-    {
-      id: '6',
-      title: 'The Rise of E-Commerce Logistics in India',
-      excerpt: 'Understanding the challenges and opportunities in the booming e-commerce logistics sector.',
-      category: 'Industry News',
-      date: 'Sep 15, 2025',
-      author: 'Priya Sharma',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800',
-      readTime: '5 min read'
+  useEffect(() => {
+    fetchBlogs();
+  }, [selectedCategory, searchQuery]);
+
+  const fetchBlogs = async () => {
+    try {
+      setLoading(true);
+      const params = {
+        page: 1,
+        limit: 100 // Get all published blogs
+      };
+
+      if (selectedCategory !== 'all') {
+        params.category = selectedCategory;
+      }
+
+      if (searchQuery) {
+        params.search = searchQuery;
+      }
+
+      const response = await blogService.getAll(params);
+      setBlogPosts(response.data || []);
+    } catch (error) {
+      console.error('Failed to fetch blogs:', error);
+      toast.error('Failed to load blogs');
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
 
-  const filteredPosts = blogPosts.filter(post => {
-    const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory;
-    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  const formatDate = (date) => {
+    return new Date(date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    });
+  };
 
   return (
     <div className="min-h-screen">
@@ -139,26 +113,33 @@ const Blog = () => {
       {/* Blog Posts Grid */}
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
-          {filteredPosts.length === 0 ? (
+          {loading ? (
+            <div className="flex justify-center items-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+            </div>
+          ) : blogPosts.length === 0 ? (
             <div className="text-center py-20">
               <p className="text-xl text-gray-600">No articles found matching your criteria.</p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredPosts.map((post, index) => (
+              {blogPosts.map((post, index) => (
                 <motion.article
-                  key={post.id}
+                  key={post._id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="card group"
                 >
-                  <Link to={`/blog/${post.id}`}>
+                  <Link to={`/blog/${post.slug || post._id}`}>
                     <div className="overflow-hidden">
-                      <img 
-                        src={post.image} 
-                        alt={post.title}
+                      <img
+                        src={post.featuredImage ? `${import.meta.env.VITE_API_URL.replace('/api', '')}${post.featuredImage}` : 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800'}
+                        alt={post.title?.[language] || post.title?.en || post.title}
                         className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                        onError={(e) => {
+                          e.target.src = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800';
+                        }}
                       />
                     </div>
                     <div className="p-6">
@@ -166,13 +147,13 @@ const Blog = () => {
                         <span className="text-xs font-semibold text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
                           {post.category}
                         </span>
-                        <span className="text-sm text-gray-500">{post.readTime}</span>
+                        <span className="text-sm text-gray-500">{post.readTime || '5 min read'}</span>
                       </div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
-                        {post.title}
+                        {post.title?.[language] || post.title?.en || post.title}
                       </h3>
-                      <p className="text-gray-600 mb-4 line-clamp-2">{post.excerpt}</p>
-                      
+                      <p className="text-gray-600 mb-4 line-clamp-2">{post.excerpt?.[language] || post.excerpt?.en || post.excerpt}</p>
+
                       <div className="flex items-center justify-between pt-4 border-t">
                         <div className="flex items-center space-x-4 text-sm text-gray-500">
                           <div className="flex items-center space-x-1">
@@ -181,7 +162,7 @@ const Blog = () => {
                           </div>
                           <div className="flex items-center space-x-1">
                             <FaCalendar size={12} />
-                            <span>{post.date}</span>
+                            <span>{formatDate(post.publishedAt || post.createdAt)}</span>
                           </div>
                         </div>
                       </div>

@@ -9,11 +9,12 @@ const BlogForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const isEditMode = !!id;
+  const [activeTab, setActiveTab] = useState('en'); // 'en' or 'hi'
 
   const [formData, setFormData] = useState({
-    title: '',
-    excerpt: '',
-    content: '',
+    title: { en: '', hi: '' },
+    excerpt: { en: '', hi: '' },
+    content: { en: '', hi: '' },
     category: 'Logistics',
     author: 'Admin',
     tags: '',
@@ -35,21 +36,30 @@ const BlogForm = () => {
       setFetchingBlog(true);
       const response = await blogService.getOne(id);
       console.log('Fetched blog response:', response);
-      
+
       // Handle the response structure from backend
       const blog = response.data || response;
-      
+
       setFormData({
-        title: blog.title || '',
-        excerpt: blog.excerpt || '',
-        content: blog.content || '',
+        title: {
+          en: blog.title?.en || '',
+          hi: blog.title?.hi || ''
+        },
+        excerpt: {
+          en: blog.excerpt?.en || '',
+          hi: blog.excerpt?.hi || ''
+        },
+        content: {
+          en: blog.content?.en || '',
+          hi: blog.content?.hi || ''
+        },
         category: blog.category || 'Logistics',
         author: blog.author || 'Admin',
         tags: blog.tags?.join(', ') || '',
         isPublished: blog.isPublished || false,
       });
       if (blog.featuredImage) {
-        setImagePreview(blog.featuredImage);
+        setImagePreview(`${import.meta.env.VITE_API_URL.replace('/api', '')}${blog.featuredImage}`);
       }
     } catch (error) {
       console.error('Failed to fetch blog:', error);
@@ -68,8 +78,24 @@ const BlogForm = () => {
     });
   };
 
-  const handleContentChange = (value) => {
-    setFormData({ ...formData, content: value });
+  const handleBilingualChange = (field, lang, value) => {
+    setFormData({
+      ...formData,
+      [field]: {
+        ...formData[field],
+        [lang]: value
+      }
+    });
+  };
+
+  const handleContentChange = (value, lang) => {
+    setFormData({
+      ...formData,
+      content: {
+        ...formData.content,
+        [lang]: value
+      }
+    });
   };
 
   const handleImageChange = (e) => {
@@ -86,28 +112,32 @@ const BlogForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!formData.title || !formData.excerpt || !formData.content) {
-      toast.error('Please fill in all required fields');
+
+    if (!formData.title.en || !formData.excerpt.en || !formData.content.en) {
+      toast.error('Please fill in all required English fields');
       return;
     }
 
     try {
       setLoading(true);
       const submitData = new FormData();
-      
-      submitData.append('title', formData.title);
-      submitData.append('excerpt', formData.excerpt);
-      submitData.append('content', formData.content);
+
+      // Append bilingual fields
+      submitData.append('title.en', formData.title.en);
+      submitData.append('title.hi', formData.title.hi);
+      submitData.append('excerpt.en', formData.excerpt.en);
+      submitData.append('excerpt.hi', formData.excerpt.hi);
+      submitData.append('content.en', formData.content.en);
+      submitData.append('content.hi', formData.content.hi);
+
       submitData.append('category', formData.category);
       submitData.append('author', formData.author);
       submitData.append('isPublished', formData.isPublished);
-      
+
       if (formData.tags) {
-        const tagsArray = formData.tags.split(',').map(tag => tag.trim()).filter(tag => tag);
-        tagsArray.forEach(tag => submitData.append('tags[]', tag));
+        submitData.append('tags', formData.tags);
       }
-      
+
       if (featuredImage) {
         submitData.append('featuredImage', featuredImage);
       }
@@ -119,9 +149,10 @@ const BlogForm = () => {
         await blogService.create(submitData);
         toast.success('Blog created successfully');
       }
-      
+
       navigate('/admin/blogs');
     } catch (error) {
+      console.error('Submit error:', error);
       toast.error(error.response?.data?.message || `Failed to ${isEditMode ? 'update' : 'create'} blog`);
     } finally {
       setLoading(false);
@@ -155,133 +186,219 @@ const BlogForm = () => {
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Title */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Title <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              placeholder="Enter blog title"
-              required
-            />
-          </div>
-
-          {/* Excerpt */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Excerpt <span className="text-red-500">*</span>
-            </label>
-            <textarea
-              name="excerpt"
-              value={formData.excerpt}
-              onChange={handleChange}
-              rows="3"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              placeholder="Brief description of the blog"
-              required
-            />
-          </div>
-
-          {/* Content (Rich Text Editor) */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Content <span className="text-red-500">*</span>
-            </label>
-            <div className="bg-white rounded-lg border border-gray-300">
-              <ReactQuill
-                theme="snow"
-                value={formData.content}
-                onChange={handleContentChange}
-                modules={quillModules}
-                className="h-64"
-                placeholder="Write your blog content here..."
-              />
-            </div>
-          </div>
-
-          {/* Category and Author Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-20">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
-              <select
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          {/* Language Tabs */}
+          <div className="border-b border-gray-200">
+            <nav className="-mb-px flex space-x-8">
+              <button
+                type="button"
+                onClick={() => setActiveTab('en')}
+                className={`${
+                  activeTab === 'en'
+                    ? 'border-primary-600 text-primary-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
               >
-                <option value="Logistics">Logistics</option>
-                <option value="Technology">Technology</option>
-                <option value="Supply Chain">Supply Chain</option>
-                <option value="News">News</option>
-                <option value="Case Study">Case Study</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Author</label>
-              <input
-                type="text"
-                name="author"
-                value={formData.author}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                placeholder="Author name"
-              />
-            </div>
+                English <span className="text-red-500">*</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('hi')}
+                className={`${
+                  activeTab === 'hi'
+                    ? 'border-primary-600 text-primary-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+              >
+                हिन्दी (Hindi)
+              </button>
+            </nav>
           </div>
 
-          {/* Tags */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Tags <span className="text-gray-500 text-xs">(comma separated)</span>
-            </label>
-            <input
-              type="text"
-              name="tags"
-              value={formData.tags}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              placeholder="e.g., logistics, supply chain, technology"
-            />
-          </div>
-
-          {/* Featured Image */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Featured Image</label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            />
-            {imagePreview && (
-              <div className="mt-4">
-                <img
-                  src={imagePreview}
-                  alt="Preview"
-                  className="w-full max-w-md h-48 object-cover rounded-lg"
+          {/* English Content */}
+          {activeTab === 'en' && (
+            <div className="space-y-6">
+              {/* Title (English) */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Title (English) <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={formData.title.en}
+                  onChange={(e) => handleBilingualChange('title', 'en', e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  placeholder="Enter blog title in English"
+                  required
                 />
               </div>
-            )}
-          </div>
 
-          {/* Published Checkbox */}
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              name="isPublished"
-              checked={formData.isPublished}
-              onChange={handleChange}
-              className="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
-            />
-            <label className="ml-2 text-sm font-medium text-gray-700">
-              Publish immediately
-            </label>
+              {/* Excerpt (English) */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Excerpt (English) <span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  value={formData.excerpt.en}
+                  onChange={(e) => handleBilingualChange('excerpt', 'en', e.target.value)}
+                  rows="3"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  placeholder="Brief description of the blog in English"
+                  required
+                />
+              </div>
+
+              {/* Content (English) */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Content (English) <span className="text-red-500">*</span>
+                </label>
+                <div className="bg-white rounded-lg border border-gray-300">
+                  <ReactQuill
+                    theme="snow"
+                    value={formData.content.en}
+                    onChange={(value) => handleContentChange(value, 'en')}
+                    modules={quillModules}
+                    className="h-64"
+                    placeholder="Write your blog content here in English..."
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Hindi Content */}
+          {activeTab === 'hi' && (
+            <div className="space-y-6">
+              {/* Title (Hindi) */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  शीर्षक (Title in Hindi)
+                </label>
+                <input
+                  type="text"
+                  value={formData.title.hi}
+                  onChange={(e) => handleBilingualChange('title', 'hi', e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  placeholder="हिंदी में ब्लॉग का शीर्षक दर्ज करें"
+                />
+              </div>
+
+              {/* Excerpt (Hindi) */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  सारांश (Excerpt in Hindi)
+                </label>
+                <textarea
+                  value={formData.excerpt.hi}
+                  onChange={(e) => handleBilingualChange('excerpt', 'hi', e.target.value)}
+                  rows="3"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  placeholder="हिंदी में ब्लॉग का संक्षिप्त विवरण"
+                />
+              </div>
+
+              {/* Content (Hindi) */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  सामग्री (Content in Hindi)
+                </label>
+                <div className="bg-white rounded-lg border border-gray-300">
+                  <ReactQuill
+                    theme="snow"
+                    value={formData.content.hi}
+                    onChange={(value) => handleContentChange(value, 'hi')}
+                    modules={quillModules}
+                    className="h-64"
+                    placeholder="अपनी ब्लॉग सामग्री यहाँ हिंदी में लिखें..."
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Common Fields (shown regardless of tab) */}
+          <div className="pt-6 mt-20 border-t border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">General Settings</h3>
+
+            {/* Category and Author Row */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                <select
+                  name="category"
+                  value={formData.category}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                >
+                  <option value="Logistics">Logistics</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Supply Chain">Supply Chain</option>
+                  <option value="News">News</option>
+                  <option value="Case Study">Case Study</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Author</label>
+                <input
+                  type="text"
+                  name="author"
+                  value={formData.author}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  placeholder="Author name"
+                />
+              </div>
+            </div>
+
+            {/* Tags */}
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Tags <span className="text-gray-500 text-xs">(comma separated)</span>
+              </label>
+              <input
+                type="text"
+                name="tags"
+                value={formData.tags}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                placeholder="e.g., logistics, supply chain, technology"
+              />
+            </div>
+
+            {/* Featured Image */}
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-gray-700 mb-2">Featured Image</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              />
+              {imagePreview && (
+                <div className="mt-4">
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    className="w-full max-w-md h-48 object-cover rounded-lg"
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* Published Checkbox */}
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="isPublished"
+                checked={formData.isPublished}
+                onChange={handleChange}
+                className="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
+              />
+              <label className="ml-2 text-sm font-medium text-gray-700">
+                Publish immediately
+              </label>
+            </div>
           </div>
 
           {/* Submit Buttons */}

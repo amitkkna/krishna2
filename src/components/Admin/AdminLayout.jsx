@@ -1,6 +1,6 @@
 import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import { FaChartLine, FaBlog, FaImages, FaEnvelope, FaSignOutAlt, FaBars, FaTimes, FaUser } from 'react-icons/fa';
+import { FaChartLine, FaBlog, FaImages, FaEnvelope, FaSignOutAlt, FaBars, FaTimes, FaUser, FaNewspaper } from 'react-icons/fa';
 import { authService } from '../../services/apiService';
 import { toast } from 'react-toastify';
 
@@ -20,6 +20,7 @@ const AdminLayout = () => {
     { path: '/admin/blogs', icon: FaBlog, label: 'Blogs' },
     { path: '/admin/gallery', icon: FaImages, label: 'Gallery' },
     { path: '/admin/contacts', icon: FaEnvelope, label: 'Contacts' },
+    { path: '/admin/newsletter', icon: FaNewspaper, label: 'Newsletter' },
   ];
 
   const isActive = (path) => location.pathname === path;

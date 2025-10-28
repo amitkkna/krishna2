@@ -144,14 +144,21 @@ const BlogList = () => {
                     <div className="flex items-center space-x-3">
                       {blog.featuredImage && (
                         <img
-                          src={blog.featuredImage}
+                          src={`${import.meta.env.VITE_API_URL.replace('/api', '')}${blog.featuredImage}`}
                           alt={blog.title}
                           className="w-16 h-16 rounded object-cover"
+                          onError={(e) => {
+                            console.error('Image load error:', blog.featuredImage);
+                            e.target.src = 'https://via.placeholder.com/64x64?text=No+Image';
+                          }}
                         />
                       )}
                       <div className="max-w-xs">
-                        <div className="font-medium text-gray-900 truncate">{blog.title}</div>
-                        <div className="text-sm text-gray-500 truncate">{blog.excerpt}</div>
+                        <div className="font-medium text-gray-900 truncate">{blog.title?.en || blog.title}</div>
+                        {blog.title?.hi && (
+                          <div className="text-xs text-gray-400 truncate">हिंदी: {blog.title.hi}</div>
+                        )}
+                        <div className="text-sm text-gray-500 truncate">{blog.excerpt?.en || blog.excerpt}</div>
                       </div>
                     </div>
                   </td>

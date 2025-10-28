@@ -67,6 +67,16 @@ export const galleryService = {
     return response.data;
   },
 
+  getFolders: async (params = {}) => {
+    const response = await api.get('/gallery/folders', { params });
+    return response.data;
+  },
+
+  getByFolder: async (folderName, params = {}) => {
+    const response = await api.get(`/gallery/folder/${folderName}`, { params });
+    return response.data;
+  },
+
   getOne: async (id) => {
     const response = await api.get(`/gallery/${id}`);
     return response.data;
@@ -122,6 +132,35 @@ export const contactService = {
 
   delete: async (id) => {
     const response = await api.delete(`/contacts/${id}`);
+    return response.data;
+  }
+};
+
+export const newsletterService = {
+  subscribe: async (email) => {
+    const response = await api.post('/newsletter/subscribe', { email });
+    return response.data;
+  },
+
+  getAll: async (params = {}) => {
+    const response = await api.get('/newsletter', { params });
+    return response.data;
+  },
+
+  delete: async (id) => {
+    const response = await api.delete(`/newsletter/${id}`);
+    return response.data;
+  },
+
+  toggleStatus: async (id) => {
+    const response = await api.put(`/newsletter/${id}/toggle`);
+    return response.data;
+  },
+
+  exportCSV: async () => {
+    const response = await api.get('/newsletter/export/csv', {
+      responseType: 'blob'
+    });
     return response.data;
   }
 };

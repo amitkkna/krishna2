@@ -4,14 +4,16 @@ import { FaTimes, FaChevronLeft, FaChevronRight, FaSearch, FaPlay, FaPause } fro
 import axios from 'axios';
 
 const Gallery = () => {
+  const [folders, setFolders] = useState([]);
   const [images, setImages] = useState([]);
   const [filteredImages, setFilteredImages] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedFolder, setSelectedFolder] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
-  
+
   // Hero slider state
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
@@ -53,23 +55,57 @@ const Gallery = () => {
   ];
 
   useEffect(() => {
-    fetchGalleryImages();
-  }, []);
+    if (selectedFolder) {
+      fetchFolderImages(selectedFolder);
+    } else {
+      fetchGalleryFolders();
+    }
+  }, [selectedFolder, selectedCategory]);
 
-  const fetchGalleryImages = async () => {
+  const fetchGalleryFolders = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/gallery`);
-      console.log('Gallery API Response:', response.data);
+      const params = {};
+      if (selectedCategory && selectedCategory !== 'All') {
+        params.category = selectedCategory;
+      }
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/gallery/folders`, { params });
+      console.log('Gallery Folders API Response:', response.data);
+      setFolders(response.data.data || []);
+    } catch (error) {
+      console.error('Error fetching gallery folders:', error);
+      setFolders([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchFolderImages = async (folderName) => {
+    try {
+      setLoading(true);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/gallery/folder/${folderName}`);
+      console.log('Folder Images API Response:', response.data);
       setImages(response.data.data || []);
       setFilteredImages(response.data.data || []);
     } catch (error) {
-      console.error('Error fetching gallery images:', error);
+      console.error('Error fetching folder images:', error);
       setImages([]);
       setFilteredImages([]);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleFolderClick = (folderName) => {
+    setSelectedFolder(folderName);
+    setSearchTerm('');
+  };
+
+  const handleBackToFolders = () => {
+    setSelectedFolder(null);
+    setImages([]);
+    setFilteredImages([]);
+    setSearchTerm('');
   };
 
   useEffect(() => {
@@ -266,43 +302,63 @@ const Gallery = () => {
       {/* Filters Section */}
       <section className="py-8 bg-white shadow-sm sticky top-16 z-40">
         <div className="container-custom">
+          {/* Back to Folders Button */}
+          {selectedFolder && (
+            <div className="mb-4">
+              <button
+                onClick={handleBackToFolders}
+                className="flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium transition-colors"
+              >
+                <FaChevronLeft />
+                <span>Back to Folders</span>
+              </button>
+              <h2 className="text-2xl font-bold mt-2">Folder: {selectedFolder.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h2>
+            </div>
+          )}
+
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            {/* Category Filter */}
-            <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full font-medium transition-all ${
-                    selectedCategory === category
-                      ? 'bg-primary-600 text-white shadow-md'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
+            {/* Category Filter - Only show when not in folder view */}
+            {!selectedFolder && (
+              <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`px-4 py-2 rounded-full font-medium transition-all ${
+                      selectedCategory === category
+                        ? 'bg-primary-600 text-white shadow-md'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            )}
 
-            {/* Search Bar */}
-            <div className="relative w-full md:w-64">
-              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search images..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              />
-            </div>
+            {/* Search Bar - Only show when viewing folder images */}
+            {selectedFolder && (
+              <div className="relative w-full md:w-64">
+                <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search images..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                />
+              </div>
+            )}
           </div>
 
-          {/* Results Count */}
-          <div className="mt-4 text-center md:text-left">
-            <p className="text-gray-600">
-              Showing <span className="font-semibold text-gray-900">{filteredImages.length}</span> {filteredImages.length === 1 ? 'image' : 'images'}
-            </p>
-          </div>
+          {/* Results Count - Only show when viewing folder images */}
+          {selectedFolder && (
+            <div className="mt-4 text-center md:text-left">
+              <p className="text-gray-600">
+                Showing <span className="font-semibold text-gray-900">{filteredImages.length}</span> {filteredImages.length === 1 ? 'image' : 'images'}
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -313,58 +369,105 @@ const Gallery = () => {
             <div className="flex justify-center items-center py-20">
               <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary-600"></div>
             </div>
-          ) : filteredImages.length === 0 ? (
-            <div className="text-center py-20">
-              <div className="text-6xl text-gray-300 mb-4">📷</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">No images found</h3>
-              <p className="text-gray-600">
-                {searchTerm || selectedCategory !== 'All' 
-                  ? 'Try adjusting your filters or search term' 
-                  : 'Gallery images will appear here once uploaded from the admin panel'}
-              </p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredImages.map((image, index) => (
-                <motion.div
-                  key={image._id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all cursor-pointer"
-                  onClick={() => openLightbox(image, index)}
-                >
-                  <div className="aspect-w-4 aspect-h-3 bg-gray-200">
-                    <img
-                      src={`http://localhost:5000${image.imageUrl}`}
-                      alt={image.title || 'Gallery image'}
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                      onError={(e) => {
-                        console.error('Image load error:', image.imageUrl);
-                        e.target.src = 'https://via.placeholder.com/400x300?text=Image+Not+Found';
-                      }}
-                    />
-                  </div>
-                  
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                      {image.title && (
-                        <h3 className="text-lg font-semibold mb-1">{image.title}</h3>
-                      )}
-                      {image.description && (
-                        <p className="text-sm text-gray-200 line-clamp-2">{image.description}</p>
-                      )}
-                      <div className="mt-2">
-                        <span className="inline-block px-2 py-1 bg-primary-600 text-xs rounded-full">
-                          {image.category}
-                        </span>
+          ) : selectedFolder ? (
+            /* Show images in selected folder */
+            filteredImages.length === 0 ? (
+              <div className="text-center py-20">
+                <div className="text-6xl text-gray-300 mb-4">📷</div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">No images found</h3>
+                <p className="text-gray-600">
+                  {searchTerm ? 'Try adjusting your search term' : 'This folder is empty'}
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {filteredImages.map((image, index) => (
+                  <motion.div
+                    key={image._id}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all cursor-pointer"
+                    onClick={() => openLightbox(image, index)}
+                  >
+                    <div className="aspect-w-4 aspect-h-3 bg-gray-200">
+                      <img
+                        src={`http://localhost:5000${image.imageUrl}`}
+                        alt={image.title || 'Gallery image'}
+                        className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                        onError={(e) => {
+                          console.error('Image load error:', image.imageUrl);
+                          e.target.src = 'https://via.placeholder.com/400x300?text=Image+Not+Found';
+                        }}
+                      />
+                    </div>
+
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        {image.title && (
+                          <h3 className="text-lg font-semibold mb-1">{image.title}</h3>
+                        )}
+                        {image.description && (
+                          <p className="text-sm text-gray-200 line-clamp-2">{image.description}</p>
+                        )}
+                        <div className="mt-2">
+                          <span className="inline-block px-2 py-1 bg-primary-600 text-xs rounded-full">
+                            {image.category}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                  </motion.div>
+                ))}
+              </div>
+            )
+          ) : (
+            /* Show folders */
+            folders.length === 0 ? (
+              <div className="text-center py-20">
+                <div className="text-6xl text-gray-300 mb-4">📁</div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">No folders found</h3>
+                <p className="text-gray-600">
+                  Gallery folders will appear here once images are uploaded from the admin panel
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {folders.map((folder, index) => (
+                  <motion.div
+                    key={folder._id}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all cursor-pointer"
+                    onClick={() => handleFolderClick(folder._id)}
+                  >
+                    <div className="aspect-w-4 aspect-h-3 bg-gray-200 relative">
+                      <img
+                        src={`http://localhost:5000${folder.thumbnail}`}
+                        alt={folder.title || 'Folder'}
+                        className="w-full h-64 object-cover"
+                        onError={(e) => {
+                          e.target.src = 'https://via.placeholder.com/400x300?text=Folder';
+                        }}
+                      />
+                      {/* Folder Title Overlay */}
+                      <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center p-4">
+                        <h3 className="text-2xl md:text-3xl font-bold text-white text-center mb-3">
+                          {folder.title ? folder.title.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : folder._id}
+                        </h3>
+                        <div>
+                          <span className="inline-block px-3 py-1 bg-primary-600 text-sm rounded-full text-white">
+                            {folder.category}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            )
           )}
         </div>
       </section>
