@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
-import { 
-  FaFacebookF, 
-  FaTwitter, 
-  FaLinkedinIn, 
+import { useState } from 'react';
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaLinkedinIn,
   FaInstagram,
   FaPhone,
   FaEnvelope,
@@ -12,10 +13,35 @@ import {
 import { useLanguage } from '../../context/LanguageContext';
 import { footerTranslations } from '../../translations/footer';
 import { navigationTranslations } from '../../translations/navigation';
+import { newsletterService } from '../../services/apiService';
+import { toast } from 'react-toastify';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { t } = useLanguage();
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!email) {
+      toast.error('Please enter your email');
+      return;
+    }
+
+    try {
+      setLoading(true);
+      await newsletterService.subscribe(email);
+      toast.success('Successfully subscribed to newsletter!');
+      setEmail('');
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
+      toast.error(error.response?.data?.message || 'Failed to subscribe. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <footer className="bg-gray-900 text-gray-300">
@@ -111,6 +137,11 @@ const Footer = () => {
                   {t(navigationTranslations.gallery)}
                 </Link>
               </li>
+              <li>
+                <Link to="/blog" className="text-sm hover:text-primary-400 transition-colors inline-block">
+                  Blogs
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -180,15 +211,22 @@ const Footer = () => {
             <p className="text-gray-400 text-sm mb-4">
               {t(footerTranslations.newsletter.subtitle)}
             </p>
-            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder={t(footerTranslations.newsletter.placeholder)}
                 className="flex-1 px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 transition-colors"
                 required
+                disabled={loading}
               />
-              <button type="submit" className="btn-primary whitespace-nowrap">
-                {t(footerTranslations.newsletter.button)}
+              <button
+                type="submit"
+                className="btn-primary whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={loading}
+              >
+                {loading ? 'Subscribing...' : t(footerTranslations.newsletter.button)}
               </button>
             </form>
           </div>

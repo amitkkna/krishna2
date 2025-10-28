@@ -16,6 +16,11 @@ const gallerySchema = new mongoose.Schema({
     type: String,
     required: [true, 'Image URL is required']
   },
+  folderName: {
+    type: String,
+    required: [true, 'Folder name is required'],
+    trim: true
+  },
   category: {
     type: String,
     default: 'General',
@@ -41,7 +46,7 @@ const gallerySchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Index for sorting
-gallerySchema.index({ order: 1, createdAt: -1 });
+// Index for sorting and folder grouping
+gallerySchema.index({ folderName: 1, order: 1, createdAt: -1 });
 
 export default mongoose.model('Gallery', gallerySchema);

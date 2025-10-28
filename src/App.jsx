@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LanguageProvider } from './context/LanguageContext';
+import ScrollToTop from './components/ScrollToTop';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home';
 import Services from './pages/Services';
@@ -25,13 +26,15 @@ import BlogList from './pages/Admin/BlogList';
 import BlogForm from './pages/Admin/BlogForm';
 import GalleryList from './pages/Admin/GalleryList';
 import ContactList from './pages/Admin/ContactList';
+import NewsletterList from './pages/Admin/NewsletterList';
 import ProtectedRoute from './components/Admin/ProtectedRoute';
 
 function App() {
   return (
     <LanguageProvider>
       <Router>
-      <Routes>
+        <ScrollToTop />
+        <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -69,6 +72,7 @@ function App() {
           <Route path="gallery" element={<GalleryList />} />
           <Route path="gallery/upload" element={<GalleryList />} />
           <Route path="contacts" element={<ContactList />} />
+          <Route path="newsletter" element={<NewsletterList />} />
         </Route>
       </Routes>
       

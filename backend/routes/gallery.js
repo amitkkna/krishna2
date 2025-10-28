@@ -2,8 +2,93 @@ import express from 'express';
 import Gallery from '../models/Gallery.js';
 import { protect, authorize } from '../middleware/auth.js';
 import { upload, handleMulterError } from '../middleware/upload.js';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const router = express.Router();
+
+// @route   GET /api/gallery/folders
+// @desc    Get all gallery folders
+// @access  Public
+router.get('/folders', async (req, res) => {
+  try {
+    const { category } = req.query;
+
+    let query = { isActive: true };
+
+    // Filter by category
+    if (category && category !== 'all') {
+      query.category = category;
+    }
+
+    // Get unique folders with image count
+    const folders = await Gallery.aggregate([
+      { $match: query },
+      {
+        $group: {
+          _id: '$folderName',
+          title: { $first: '$title' },
+          count: { $sum: 1 },
+          thumbnail: { $first: '$imageUrl' },
+          category: { $first: '$category' },
+          createdAt: { $first: '$createdAt' }
+        }
+      },
+      { $sort: { createdAt: -1 } }
+    ]);
+
+    res.json({
+      success: true,
+      data: folders
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+});
+
+// @route   GET /api/gallery/folder/:folderName
+// @desc    Get all images in a specific folder
+// @access  Public
+router.get('/folder/:folderName', async (req, res) => {
+  try {
+    const { folderName } = req.params;
+    const { page = 1, limit = 20 } = req.query;
+
+    const query = { folderName, isActive: true };
+
+    const images = await Gallery.find(query)
+      .sort({ order: 1, createdAt: -1 })
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .select('-__v');
+
+    const count = await Gallery.countDocuments(query);
+
+    res.json({
+      success: true,
+      data: images,
+      total: count,
+      pagination: {
+        page: parseInt(page),
+        limit: parseInt(limit),
+        total: count,
+        pages: Math.ceil(count / limit)
+      }
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+});
 
 // @route   GET /api/gallery
 // @desc    Get all gallery images
@@ -11,22 +96,22 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     const { category, page = 1, limit = 20 } = req.query;
-    
+
     let query = { isActive: true };
-    
+
     // Filter by category
     if (category && category !== 'all') {
       query.category = category;
     }
-    
+
     const images = await Gallery.find(query)
       .sort({ order: 1, createdAt: -1 })
       .limit(limit * 1)
       .skip((page - 1) * limit)
       .select('-__v');
-    
+
     const count = await Gallery.countDocuments(query);
-    
+
     res.json({
       success: true,
       data: images,
@@ -83,20 +168,38 @@ router.post('/', protect, authorize('admin'), upload.single('image'), handleMult
         message: 'Please upload an image'
       });
     }
-    
+
+    // Create folder name from title
+    const folderName = req.body.title ? req.body.title.trim().replace(/[^a-z0-9]+/gi, '-').toLowerCase() : 'untitled';
+
+    // Create folder path
+    const galleryDir = path.join(__dirname, '../uploads/gallery');
+    const folderPath = path.join(galleryDir, folderName);
+
+    // Ensure folder exists
+    if (!fs.existsSync(folderPath)) {
+      fs.mkdirSync(folderPath, { recursive: true });
+    }
+
+    // Move file from gallery root to folder
+    const oldPath = req.file.path;
+    const newPath = path.join(folderPath, req.file.filename);
+    fs.renameSync(oldPath, newPath);
+
     const imageData = {
       ...req.body,
-      imageUrl: `/uploads/gallery/${req.file.filename}`,
+      imageUrl: `/uploads/gallery/${folderName}/${req.file.filename}`,
+      folderName: folderName,
       uploadedBy: req.user.id
     };
-    
+
     // Parse tags if it's a string
     if (typeof imageData.tags === 'string') {
       imageData.tags = imageData.tags.split(',').map(tag => tag.trim());
     }
-    
+
     const image = await Gallery.create(imageData);
-    
+
     res.status(201).json({
       success: true,
       data: image
@@ -120,15 +223,35 @@ router.post('/bulk', protect, authorize('admin'), upload.array('images', 10), ha
         message: 'Please upload at least one image'
       });
     }
-    
-    const { category = 'General', tags = [] } = req.body;
+
+    const { category = 'General', tags = [], title } = req.body;
     const parsedTags = typeof tags === 'string' ? tags.split(',').map(tag => tag.trim()) : tags;
-    
+
+    // Create folder name from title or use 'bulk-upload'
+    const folderName = title ? title.trim().replace(/[^a-z0-9]+/gi, '-').toLowerCase() : 'bulk-upload';
+
+    // Create folder path
+    const galleryDir = path.join(__dirname, '../uploads/gallery');
+    const folderPath = path.join(galleryDir, folderName);
+
+    // Ensure folder exists
+    if (!fs.existsSync(folderPath)) {
+      fs.mkdirSync(folderPath, { recursive: true });
+    }
+
+    // Move all files to the folder
+    req.files.forEach(file => {
+      const oldPath = file.path;
+      const newPath = path.join(folderPath, file.filename);
+      fs.renameSync(oldPath, newPath);
+    });
+
     const images = await Promise.all(
-      req.files.map((file, index) => 
+      req.files.map((file, index) =>
         Gallery.create({
-          title: file.originalname.split('.')[0],
-          imageUrl: `/uploads/gallery/${file.filename}`,
+          title: title || file.originalname.split('.')[0],
+          imageUrl: `/uploads/gallery/${folderName}/${file.filename}`,
+          folderName: folderName,
           category,
           tags: parsedTags,
           order: index,
@@ -136,7 +259,7 @@ router.post('/bulk', protect, authorize('admin'), upload.array('images', 10), ha
         })
       )
     );
-    
+
     res.status(201).json({
       success: true,
       data: images,

@@ -2,10 +2,17 @@ import mongoose from 'mongoose';
 
 const blogSchema = new mongoose.Schema({
   title: {
-    type: String,
-    required: [true, 'Title is required'],
-    trim: true,
-    maxlength: [200, 'Title cannot exceed 200 characters']
+    en: {
+      type: String,
+      required: [true, 'English title is required'],
+      trim: true,
+      maxlength: [200, 'Title cannot exceed 200 characters']
+    },
+    hi: {
+      type: String,
+      trim: true,
+      maxlength: [200, 'Title cannot exceed 200 characters']
+    }
   },
   slug: {
     type: String,
@@ -14,18 +21,29 @@ const blogSchema = new mongoose.Schema({
     trim: true
   },
   excerpt: {
-    type: String,
-    required: [true, 'Excerpt is required'],
-    maxlength: [500, 'Excerpt cannot exceed 500 characters']
+    en: {
+      type: String,
+      required: [true, 'English excerpt is required'],
+      maxlength: [500, 'Excerpt cannot exceed 500 characters']
+    },
+    hi: {
+      type: String,
+      maxlength: [500, 'Excerpt cannot exceed 500 characters']
+    }
   },
   content: {
-    type: String,
-    required: [true, 'Content is required']
+    en: {
+      type: String,
+      required: [true, 'English content is required']
+    },
+    hi: {
+      type: String
+    }
   },
   category: {
     type: String,
     required: [true, 'Category is required'],
-    enum: ['Technology', 'Insights', 'Case Studies', 'Sustainability', 'Industry News', 'Other']
+    enum: ['Logistics', 'Technology', 'Supply Chain', 'News', 'Case Study']
   },
   author: {
     type: String,
@@ -69,21 +87,21 @@ const blogSchema = new mongoose.Schema({
 
 // Create slug from title before saving
 blogSchema.pre('save', function(next) {
-  if (this.isModified('title')) {
-    this.slug = this.title
+  if (this.isModified('title.en')) {
+    this.slug = this.title.en
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)/g, '');
   }
-  
+
   if (this.isModified('isPublished') && this.isPublished && !this.publishedAt) {
     this.publishedAt = new Date();
   }
-  
+
   next();
 });
 
-// Index for search
-blogSchema.index({ title: 'text', excerpt: 'text', content: 'text' });
+// Index for search (updated for bilingual fields)
+blogSchema.index({ 'title.en': 'text', 'title.hi': 'text', 'excerpt.en': 'text', 'excerpt.hi': 'text', 'content.en': 'text', 'content.hi': 'text' });
 
 export default mongoose.model('Blog', blogSchema);
