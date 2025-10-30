@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowRight, FaSearch, FaCalendar, FaUser } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import { blogService } from '../services/apiService';
+import { blogService, newsletterService } from '../services/apiService';
 import { toast } from 'react-toastify';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -12,6 +12,8 @@ const Blog = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [blogPosts, setBlogPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [subscribing, setSubscribing] = useState(false);
 
   const categories = ['all', 'Logistics', 'Technology', 'Supply Chain', 'News', 'Case Study'];
 
@@ -51,6 +53,27 @@ const Blog = () => {
       month: 'short',
       day: 'numeric',
     });
+  };
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!newsletterEmail || !newsletterEmail.includes('@')) {
+      toast.error('Please enter a valid email address');
+      return;
+    }
+
+    try {
+      setSubscribing(true);
+      await newsletterService.subscribe(newsletterEmail);
+      toast.success('Successfully subscribed to newsletter!');
+      setNewsletterEmail('');
+    } catch (error) {
+      const message = error.response?.data?.message || 'Failed to subscribe. Please try again.';
+      toast.error(message);
+    } finally {
+      setSubscribing(false);
+    }
   };
 
   return (
@@ -191,15 +214,22 @@ const Blog = () => {
               <p className="text-xl text-blue-100 mb-8">
                 Get the latest insights and industry news delivered to your inbox
               </p>
-              <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
                 <input
                   type="email"
                   placeholder="Enter your email"
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
                   className="flex-1 px-6 py-4 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-400"
                   required
+                  disabled={subscribing}
                 />
-                <button type="submit" className="bg-yellow-400 text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-yellow-300 transition-colors whitespace-nowrap inline-flex items-center justify-center space-x-2">
-                  <span>Subscribe</span>
+                <button
+                  type="submit"
+                  disabled={subscribing}
+                  className="bg-yellow-400 text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-yellow-300 transition-colors whitespace-nowrap inline-flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span>{subscribing ? 'Subscribing...' : 'Subscribe'}</span>
                   <FaArrowRight />
                 </button>
               </form>

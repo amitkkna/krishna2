@@ -286,7 +286,7 @@ const Contact = () => {
               </form>
             </motion.div>
 
-            {/* Map Placeholder */}
+            {/* Map */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -294,8 +294,28 @@ const Contact = () => {
               viewport={{ once: true }}
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-6">{t(contactTranslations.map.title)}</h2>
-              <div className="bg-gray-300 rounded-2xl h-96 mb-6 flex items-center justify-center">
-                <p className="text-gray-600">Map Integration (Google Maps/Mapbox)</p>
+              <div className="rounded-2xl overflow-hidden shadow-lg h-96 mb-6 relative">
+                <iframe
+                  src="https://maps.google.com/maps?q=Plot+No.+12/4,+12/1,+Phase+no.+108,+Near+Lingraj+Cold+Storage,+Behind+Durga+Petrol+Pump,+Ring+Road,+Gondwara,+Raipur,+Chhattisgarh&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Krishna Care - Plot No. 12/4, 12/1, Phase no. 108, Near Lingraj Cold Storage, Gondwara Raipur"
+                ></iframe>
+                <div className="absolute top-4 right-4 bg-white px-4 py-2 rounded-lg shadow-md z-10">
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Plot+No.+12%2F4%2C+12%2F1%2C+Phase+no.+108%2C+Near+Lingraj+Cold+Storage%2C+Behind+Durga+Petrol+Pump%2C+Ring+Road+No.%2C+Gondwara+Raipur+Chhattisgarh"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary-600 hover:text-primary-700 font-medium text-sm flex items-center gap-2"
+                  >
+                    <FaMapMarkerAlt />
+                    Open in Google Maps
+                  </a>
+                </div>
               </div>
               
               <div className="space-y-4">

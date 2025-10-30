@@ -33,8 +33,8 @@ const Dashboard = () => {
     try {
       setLoading(true);
       
-      // Fetch blogs with correct response structure
-      const blogsData = await blogService.getAll({ page: 1, limit: 5 });
+      // Fetch blogs with correct response structure (admin sees all blogs)
+      const blogsData = await blogService.getAllAdmin({ page: 1, limit: 5 });
       console.log('Dashboard - Blogs Data:', blogsData);
       const blogsList = blogsData.data || [];
       const publishedCount = blogsList.filter(b => b.isPublished).length || 0;
@@ -399,14 +399,27 @@ const Dashboard = () => {
                 >
                   {blog.featuredImage && (
                     <img
-                      src={blog.featuredImage}
-                      alt={blog.title}
+                      src={
+                        typeof blog.featuredImage === 'string'
+                          ? `${import.meta.env.VITE_API_URL.replace('/api', '')}${blog.featuredImage}`
+                          : blog.featuredImage?.en
+                            ? `${import.meta.env.VITE_API_URL.replace('/api', '')}${blog.featuredImage.en}`
+                            : ''
+                      }
+                      alt={blog.title?.en || blog.title || 'Blog image'}
                       className="w-20 h-20 rounded-lg object-cover shadow-md"
+                      onError={(e) => {
+                        e.target.src = 'https://via.placeholder.com/80x80?text=No+Image';
+                      }}
                     />
                   )}
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-gray-900 truncate mb-1">{blog.title}</h3>
-                    <p className="text-sm text-gray-600 line-clamp-2 mb-2">{blog.excerpt}</p>
+                    <h3 className="font-semibold text-gray-900 truncate mb-1">
+                      {blog.title?.en || blog.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 line-clamp-2 mb-2">
+                      {blog.excerpt?.en || blog.excerpt}
+                    </p>
                     <div className="flex items-center space-x-2">
                       <span
                         className={`text-xs px-3 py-1 rounded-full font-medium ${
