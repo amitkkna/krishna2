@@ -310,7 +310,7 @@ const Gallery = () => {
                 className="flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium transition-colors"
               >
                 <FaChevronLeft />
-                <span>Back to Folders</span>
+                <span>Back to Gallery</span>
               </button>
               <h2 className="text-2xl font-bold mt-2">Folder: {selectedFolder.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h2>
             </div>

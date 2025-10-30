@@ -62,14 +62,14 @@ const Header = () => {
       <div className="bg-white border-t border-gray-200">
         <div className="px-8">
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center justify-between">
-            <nav className="flex items-center">
+          <div className="hidden xl:flex items-center justify-between">
+            <nav className="flex items-center space-x-1">
               {navLinks.map((link) => (
                 <div key={link.path} className="relative group">
                   <NavLink
                     to={link.path}
                     className={({ isActive }) =>
-                      `px-6 py-4 font-medium transition-all border-b-2 inline-flex items-center space-x-1 ${
+                      `px-4 py-4 font-medium transition-all border-b-2 inline-flex items-center space-x-1 text-sm ${
                         isActive
                           ? 'text-primary-600 border-primary-600'
                           : 'text-gray-700 border-transparent hover:text-primary-600 hover:border-primary-300'
@@ -105,13 +105,13 @@ const Header = () => {
                 </div>
               ))}
             </nav>
-            <Link to="/contact" className="py-2 px-6 bg-yellow-400 text-gray-900 font-semibold rounded hover:bg-yellow-500 transition-colors mr-2">
+            <Link to="/contact" className="py-2 px-5 bg-yellow-400 text-gray-900 font-semibold rounded hover:bg-yellow-500 transition-colors ml-2 text-sm whitespace-nowrap flex-shrink-0">
               Get a Quote
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center justify-end py-4">
+          <div className="xl:hidden flex items-center justify-end py-4">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-gray-700 hover:text-primary-600 transition-colors"
@@ -125,7 +125,7 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-200 shadow-lg">
+        <div className="xl:hidden bg-white border-t border-gray-200 shadow-lg">
           <nav className="container-custom py-4">
             <div className="flex flex-col space-y-1">
               {navLinks.map((link) => (

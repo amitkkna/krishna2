@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   FaTruck,
@@ -31,15 +31,12 @@ import { useLanguage } from '../context/LanguageContext';
 import { homeTranslations } from '../translations/home';
 import { commonTranslations } from '../translations/common';
 import { navigationTranslations } from '../translations/navigation';
+import { blogService } from '../services/apiService';
 
 const Home = () => {
   const { t } = useLanguage();
-  
-  const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
-  };
+  const { language } = useLanguage();
+  const [recentBlogs, setRecentBlogs] = useState([]);
 
   const services = [
     {
@@ -163,32 +160,23 @@ const Home = () => {
     }
   ];
 
-  const blogPosts = [
-    {
-      id: '1',
-      title: 'The Future of Logistics: AI and Automation',
-      excerpt: 'Discover how artificial intelligence is revolutionizing the logistics industry...',
-      category: 'Technology',
-      date: 'Oct 5, 2025',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800'
-    },
-    {
-      id: '2',
-      title: '5 Ways to Optimize Your Supply Chain',
-      excerpt: 'Learn practical strategies to improve efficiency and reduce costs in your supply chain...',
-      category: 'Insights',
-      date: 'Oct 1, 2025',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800'
-    },
-    {
-      id: '3',
-      title: 'Sustainable Logistics: Our Commitment',
-      excerpt: 'How Krishna Care is leading the way in environmentally responsible logistics...',
-      category: 'Sustainability',
-      date: 'Sep 28, 2025',
-      image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800'
-    }
-  ];
+  // Fetch recent blogs on component mount
+  useEffect(() => {
+    const fetchRecentBlogs = async () => {
+      try {
+        // Backend automatically filters for published blogs for non-admin users
+        const response = await blogService.getAll({ page: 1, limit: 3 });
+        console.log('Home - Fetched blogs:', response);
+        const blogs = response.data || [];
+        setRecentBlogs(blogs);
+      } catch (error) {
+        console.error('Error fetching recent blogs:', error);
+        setRecentBlogs([]);
+      }
+    };
+
+    fetchRecentBlogs();
+  }, []);
 
   const [currentSlide, setCurrentSlide] = React.useState(0);
 
@@ -791,43 +779,56 @@ const Home = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
-              <motion.article
-                key={post.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="card group"
-              >
-                <div className="overflow-hidden">
-                  <img 
-                    src={post.image} 
-                    alt={post.title} 
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-semibold text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
-                      {post.category}
-                    </span>
-                    <span className="text-sm text-gray-500">{post.date}</span>
+            {recentBlogs.length > 0 ? (
+              recentBlogs.map((post, index) => (
+                <motion.article
+                  key={post._id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="card group"
+                >
+                  <div className="overflow-hidden">
+                    <img
+                      src={post.featuredImage ? `${import.meta.env.VITE_API_URL.replace('/api', '')}${post.featuredImage}` : 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800'}
+                      alt={post.title?.[language] || post.title?.en || post.title}
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                      onError={(e) => {
+                        e.target.src = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800';
+                      }}
+                    />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                  <Link 
-                    to={`/blog/${post.id}`}
-                    className="text-primary-600 font-semibold inline-flex items-center space-x-2 hover:space-x-3 transition-all"
-                  >
-                    <span>Read More</span>
-                    <FaArrowRight />
-                  </Link>
-                </div>
-              </motion.article>
-            ))}
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-semibold text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
+                        {post.category}
+                      </span>
+                      <span className="text-sm text-gray-500">
+                        {new Date(post.publishedAt || post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
+                      {post.title?.[language] || post.title?.en || post.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4 line-clamp-2">
+                      {post.excerpt?.[language] || post.excerpt?.en || post.excerpt}
+                    </p>
+                    <Link
+                      to={`/blog/${post.slug || post._id}`}
+                      className="text-primary-600 font-semibold inline-flex items-center space-x-2 hover:space-x-3 transition-all"
+                    >
+                      <span>Read More</span>
+                      <FaArrowRight />
+                    </Link>
+                  </div>
+                </motion.article>
+              ))
+            ) : (
+              <div className="col-span-3 text-center py-12">
+                <p className="text-gray-500">No blog posts available yet. Check back soon!</p>
+              </div>
+            )}
           </div>
 
           <div className="text-center mt-8 md:hidden">

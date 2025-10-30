@@ -21,7 +21,7 @@ const BlogList = () => {
   const fetchBlogs = async () => {
     try {
       setLoading(true);
-      const response = await blogService.getAll(filters);
+      const response = await blogService.getAllAdmin(filters);
       console.log('Blog API Response:', response);
       
       // Handle the response structure from backend
