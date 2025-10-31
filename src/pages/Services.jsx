@@ -22,7 +22,7 @@ const Services = () => {
       title: 'Warehousing Solutions',
       description: 'Modern warehousing facilities equipped with advanced inventory management systems.',
       features: [
-        'Climate-Controlled Storage',
+        'Ambient Warehouse',
         'Inventory Management',
         'Pick and Pack Services',
         'Cross-Docking',
@@ -135,7 +135,7 @@ const Services = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="gradient-bg text-white pt-32 pb-20">
+      <section className="gradient-bg pt-40 pb-20">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -143,11 +143,11 @@ const Services = () => {
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <h1 style={{color: '#ffffff'}} className="text-5xl md:text-6xl font-bold mb-6">
               Comprehensive Logistics <span className="text-yellow-300">Services</span>
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
-              Tailored solutions to meet your unique supply chain needs with cutting-edge 
+            <p style={{color: '#dbeafe'}} className="text-xl mb-8">
+              Tailored solutions to meet your unique supply chain needs with cutting-edge
               technology and industry expertise
             </p>
           </motion.div>

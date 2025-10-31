@@ -5,9 +5,35 @@
 @layer base {
   body {
     @apply bg-white text-gray-900 font-sans;
+    font-feature-settings: 'liga' 1, 'calt' 1; /* Enable ligatures for better readability */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-semibold;
+    letter-spacing: -0.02em; /* Tighter letter spacing for headings */
+  }
+
+  h1 {
+    @apply font-bold;
+    letter-spacing: -0.03em;
+  }
+
+  h2 {
+    @apply font-bold;
+  }
+
+  p {
+    @apply font-sans;
+    line-height: 1.7; /* Better readability for paragraphs */
+  }
+
+  /* Optimize font rendering */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 }
 

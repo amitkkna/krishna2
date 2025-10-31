@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaIndustry, FaPills, FaSeedling, FaPaintBrush, FaShoppingCart } from 'react-icons/fa';
+import { FaIndustry, FaPills, FaSeedling, FaPaintBrush, FaShoppingCart, FaPlug } from 'react-icons/fa';
 
 const Portfolio = () => {
   const divisions = [
@@ -14,28 +14,18 @@ const Portfolio = () => {
           website: 'www.unjha.com'
         },
         {
-          name: 'BHARAT SERUMS AND VACCINES LIMITED',
-          website: 'www.bsvgroup.com'
-        },
-        {
           name: 'SINAG HEALTHCARE PVT LTD',
           subtitle: 'Delhi',
           website: 'www.sinaghealthcare.in'
-        },
-        {
-          name: 'MORVEL PHARMACIA',
-          subtitle: 'Likely Morwell Pharm',
-          website: 'www.morvel.in'
         }
       ]
     },
     {
-      title: 'Pesticides Division',
+      title: 'Pesticides & Fertilizer Division',
       icon: <FaSeedling className="w-8 h-8" />,
       gradient: 'from-green-500 to-green-700',
       companies: [
         { name: 'TATA RALLIS INDIA LTD.', subtitle: 'Mumbai', website: 'www.rallis.com' },
-        { name: 'SUMITOMO CHEMICAL INDIA LTD.', subtitle: 'Mumbai', website: 'www.sumitomochemical.com' },
         { name: 'GODREJ AGROVET LIMITED', subtitle: 'Mumbai', website: 'www.godrejagrovet.com' },
         { name: 'GHARDA CHEMICALS LTD.', subtitle: 'Mumbai', website: 'www.gharda.com' },
         { name: 'SWAL CORPORATION LTD.', subtitle: 'Mumbai', website: 'www.swalindia.com' },
@@ -47,15 +37,17 @@ const Portfolio = () => {
         { name: 'ATUL LTD.', website: 'www.atul.co.in' },
         { name: 'GUJARAT INSECTICIDES LIMITED', website: 'www.gilghw.com' },
         { name: 'GEOLIFE AGROTECH', website: 'www.geolife.com' },
-        { name: 'CHAMINOVA' },
-        { name: 'UNIVERSAL AGRO CHEMICAL INDUSTRIES', subtitle: 'Kolkata' },
-        { name: 'GANPATI AGRIZONE CARE' },
+        { name: 'CHAMINOVA' , website: 'www.cheminova.asia' },
+        { name: 'UNIVERSAL AGRO CHEMICAL INDUSTRIES', subtitle: 'Kolkata', website: 'www.universalagri.net' },
         { name: 'SAHIB FERTILIZER PVT LTD' },
         { name: 'GMD TRADE & COMMERCE PVT LTD' },
-        { name: 'CANBIOSYS' },
-        { name: 'USK' },
+        { name: 'CANBIOSYS', website: 'www.kanbiosys.com' },
+        { name: 'USK', website: 'www.uskagrosciences.com' },
         { name: 'GROWERO TECHNOLOGIES' },
-        { name: 'NADIYA FERTILIZER' }
+        { name: 'NADIYA FERTILIZER', website: 'www.nadiyabiotechpl.com'},
+        { name: 'GEEKEN CHEMICALS', website: 'www.geekenchemicals.com' },
+        { name: 'SEA6 ENERGY', website: 'www.sea6energy.com' },
+        { name: 'HINDALCO', website: 'www.hindalco.com' }
       ]
     },
     {
@@ -64,7 +56,7 @@ const Portfolio = () => {
       gradient: 'from-purple-500 to-purple-700',
       companies: [
         { name: 'SHALIMAR PAINTS LTD', website: 'www.shalimarpaints.com' },
-        { name: 'BRITISH PAINTS', website: 'www.britishpaints.in' }
+        { name: 'NEON PAINTS' }
       ]
     },
     {
@@ -75,37 +67,219 @@ const Portfolio = () => {
         { name: 'WIPRO LTD', subtitle: 'Consumer Care & Lighting', website: 'www.wiproconsumercare.com' },
         { name: 'TIRUPATI INDUSTRIES' }
       ]
+    },
+    {
+      title: 'Electronics Division',
+      icon: <FaPlug className="w-8 h-8" />,
+      gradient: 'from-indigo-500 to-indigo-700',
+      companies: [
+        { name: 'FINOLEX CABLES', website: 'www.finolex.com' }
+      ]
     }
   ];
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-primary-900 via-primary-800 to-primary-900 text-white py-20">
-        <div className="absolute inset-0 bg-black/20"></div>
+      <section className="relative bg-gradient-to-br from-[#0f1729] via-[#1a2947] to-[#2d3f5f] text-white pt-40 pb-32 overflow-hidden">
+        {/* Animated Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+            backgroundSize: '40px 40px'
+          }}></div>
+        </div>
+
+        {/* Decorative Gradient Orbs */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-[10%] w-96 h-96 bg-yellow-400 rounded-full blur-[120px] opacity-20 animate-pulse"></div>
+          <div className="absolute bottom-20 right-[10%] w-[500px] h-[500px] bg-blue-400 rounded-full blur-[120px] opacity-15 animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-500 rounded-full blur-[150px] opacity-10"></div>
+        </div>
+
         <div className="container-custom relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-6xl mx-auto"
           >
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full mb-6">
-              <FaIndustry className="w-10 h-10" />
-            </div>
-            <h1 className="text-5xl font-bold mb-6 font-heading">
-              Our Portfolio
-            </h1>
-            <p className="text-xl text-primary-100 leading-relaxed mb-4">
-              Krishna Care - C&F Agency Profile
-            </p>
-            <p className="text-lg text-primary-200 leading-relaxed max-w-3xl mx-auto">
-              Krishna Care serves as the official Clearing and Forwarding (C&F) Agent for the entire state of Chhattisgarh, 
-              managing logistics and distribution for a diverse portfolio of leading companies. For smooth and efficient 
-              functioning, operations are organized into the following specialized divisions:
+            <motion.div
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
+              className="inline-block mb-8"
+            >
+              <div className="w-28 h-28 bg-gradient-to-br from-yellow-400 via-yellow-500 to-orange-500 rounded-3xl flex items-center justify-center mx-auto shadow-2xl transform hover:scale-110 transition-transform duration-300 relative">
+                <div className="absolute inset-0 bg-yellow-400 rounded-3xl blur-xl opacity-50 animate-pulse"></div>
+                <FaIndustry className="text-[#1a2947] text-6xl relative z-10" />
+              </div>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight"
+            >
+              Our Diverse <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-500">Portfolio</span>
+            </motion.h1>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="mb-8"
+            >
+              <p className="text-2xl md:text-3xl font-semibold text-white mb-2 tracking-wide">
+                Krishna Care - C&F Agency Profile
+              </p>
+              <div className="w-32 h-1.5 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto rounded-full"></div>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="text-lg md:text-xl text-gray-100 max-w-5xl mx-auto leading-relaxed font-light px-4"
+            >
+              Krishna Care serves as the official Clearing and Forwarding (C&F) Agent for the entire state of <span className="font-semibold text-yellow-400">Chhattisgarh</span>,
+              managing <span className="font-semibold text-yellow-400">logistics and distribution</span> for a diverse portfolio of leading companies. For smooth and efficient
+              functioning, operations are organized into <span className="font-semibold text-yellow-400">specialized divisions</span>.
+            </motion.p>
+          </motion.div>
+        </div>
+
+        {/* Modern Wave Divider */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+            <path d="M0 100L60 88.3C120 76.7 240 53.3 360 43.3C480 33.3 600 36.7 720 43.3C840 50 960 60 1080 63.3C1200 66.7 1320 63.3 1380 61.7L1440 60V100H1380C1320 100 1200 100 1080 100C960 100 840 100 720 100C600 100 480 100 360 100C240 100 120 100 60 100H0Z" fill="url(#wave-gradient-portfolio)"/>
+            <defs>
+              <linearGradient id="wave-gradient-portfolio" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#F9FAFB" stopOpacity="0.1"/>
+                <stop offset="100%" stopColor="#F9FAFB" stopOpacity="1"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </section>
+
+      {/* Running Logo Section */}
+      <section className="py-16 bg-gradient-to-br from-slate-100 via-gray-100 to-slate-100 overflow-hidden relative">
+        {/* Decorative Background Pattern */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(59, 130, 246, 0.2) 1px, transparent 0)',
+            backgroundSize: '40px 40px'
+          }}></div>
+        </div>
+
+        {/* Subtle Gradient Orbs */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '2s' }}></div>
+
+        <div className="container-custom mb-12 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              Trusted by <span className="text-primary-600">Industry Leaders</span>
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Our diverse portfolio of prestigious partnerships
             </p>
           </motion.div>
         </div>
+
+        {/* Infinite Scroll Logo Container */}
+        <div className="relative">
+          {/* Gradient Overlays */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-slate-100 via-gray-100 to-transparent z-10"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-slate-100 via-gray-100 to-transparent z-10"></div>
+
+          {/* Scrolling Logos */}
+          <div className="flex animate-scroll">
+            {/* First Set of Logos */}
+            <div className="flex items-center space-x-10 px-6">
+              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
+                <img src="/images/logos/rallies.png" alt="Tata Rallis India Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+              </div>
+              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
+                <img src="/images/logos/godrej.png" alt="Godrej Agrovet Limited" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+              </div>
+              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
+                <img src="/images/logos/ghadra.png" alt="Gharda Chemicals Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+              </div>
+              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
+                <img src="/images/logos/swal.png" alt="Swal Corporation Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+              </div>
+              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
+                <img src="/images/logos/coromondal.png" alt="Coromandel International Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+              </div>
+            </div>
+
+            {/* Duplicate Set for Seamless Loop */}
+            <div className="flex items-center space-x-10 px-6">
+              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
+                <img src="/images/logos/rallies.png" alt="Tata Rallis India Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+              </div>
+              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
+                <img src="/images/logos/godrej.png" alt="Godrej Agrovet Limited" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+              </div>
+              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
+                <img src="/images/logos/ghadra.png" alt="Gharda Chemicals Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+              </div>
+              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
+                <img src="/images/logos/swal.png" alt="Swal Corporation Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+              </div>
+              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
+                <img src="/images/logos/coromondal.png" alt="Coromandel International Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+              </div>
+            </div>
+
+            {/* Third Set for Extra Smoothness */}
+            <div className="flex items-center space-x-10 px-6">
+              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
+                <img src="/images/logos/rallies.png" alt="Tata Rallis India Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+              </div>
+              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
+                <img src="/images/logos/godrej.png" alt="Godrej Agrovet Limited" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+              </div>
+              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
+                <img src="/images/logos/ghadra.png" alt="Gharda Chemicals Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+              </div>
+              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
+                <img src="/images/logos/swal.png" alt="Swal Corporation Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+              </div>
+              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
+                <img src="/images/logos/coromondal.png" alt="Coromandel International Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Animation Styles */}
+        <style jsx>{`
+          @keyframes scroll {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+
+          .animate-scroll {
+            animation: scroll 30s linear infinite;
+          }
+
+          .animate-scroll:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
       </section>
 
       {/* Divisions Section */}
@@ -202,7 +376,7 @@ const Portfolio = () => {
               viewport={{ once: true }}
               className="text-center"
             >
-              <div className="text-4xl font-bold mb-2">4</div>
+              <div className="text-4xl font-bold mb-2">5</div>
               <div className="text-primary-200">Divisions</div>
             </motion.div>
             <motion.div
@@ -212,7 +386,7 @@ const Portfolio = () => {
               transition={{ delay: 0.1 }}
               className="text-center"
             >
-              <div className="text-4xl font-bold mb-2">30+</div>
+              <div className="text-4xl font-bold mb-2">35+</div>
               <div className="text-primary-200">Partner Companies</div>
             </motion.div>
             <motion.div
@@ -288,7 +462,9 @@ const Portfolio = () => {
                   'Corona Remedies Pvt. Ltd.',
                   'Lincoln Pharma',
                   'Shreya Life Sciences (P) Ltd.',
-                  'Innov Lite (India) Pvt. Ltd.'
+                  'Innov Lite (India) Pvt. Ltd.',
+                  'Bharat Serums and Vaccines Limited',
+                  'Morvel Pharmacia'
                 ].map((company, idx) => (
                   <motion.div
                     key={idx}
@@ -333,7 +509,9 @@ const Portfolio = () => {
                   'ISAGRO (ASIA) Chemical Ltd. (Mumbai)',
                   'Jivagro Ltd.',
                   'Sumitomo',
-                  'Ganpati Agro'
+                  'Ganpati Agro',
+                  'Sumitomo Chemical India Ltd.',
+                  'Ganpati Agrizone Care'
                 ].map((company, idx) => (
                   <motion.div
                     key={idx}
@@ -371,24 +549,32 @@ const Portfolio = () => {
                 </h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow border-l-4 border-purple-600"
-                >
-                  <div className="flex items-start space-x-2">
-                    <svg className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <div>
-                      <span className="text-gray-700 font-medium block">Berger Paints India Ltd.</span>
-                      <span className="text-sm text-purple-600 font-semibold mt-1 inline-block">
-                        ⭐ 14 Years Partnership
-                      </span>
+                {[
+                  { name: 'Berger Paints India Ltd.', highlight: '⭐ 14 Years Partnership' },
+                  { name: 'British Paints' }
+                ].map((company, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className={`bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow ${company.highlight ? 'border-l-4 border-purple-600' : ''}`}
+                  >
+                    <div className="flex items-start space-x-2">
+                      <svg className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <div>
+                        <span className="text-gray-700 font-medium block">{company.name}</span>
+                        {company.highlight && (
+                          <span className="text-sm text-purple-600 font-semibold mt-1 inline-block">
+                            {company.highlight}
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
 
@@ -424,6 +610,41 @@ const Portfolio = () => {
                 </motion.div>
               </div>
             </motion.div>
+
+            {/* Beauty and Cosmetics */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-8 border-2 border-pink-200"
+            >
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-12 h-12 bg-pink-600 rounded-lg flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 font-heading">
+                  Beauty & Cosmetics
+                </h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="flex items-start space-x-2">
+                    <svg className="w-5 h-5 text-pink-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-gray-700 font-medium">Previous Beauty & Cosmetics Partners</span>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
 
           {/* Experience Stats */}
@@ -439,7 +660,7 @@ const Portfolio = () => {
                 <div className="text-amber-100">Years of Experience</div>
               </div>
               <div>
-                <div className="text-5xl font-bold mb-2">16+</div>
+                <div className="text-5xl font-bold mb-2">20+</div>
                 <div className="text-amber-100">Previous Partners</div>
               </div>
               <div>

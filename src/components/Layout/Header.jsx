@@ -48,7 +48,7 @@ const Header = () => {
               <div className="flex items-center space-x-2 mt-0.5">
                 <span className="text-xs font-medium text-yellow-400 tracking-wider">Asha Enterprises</span>
                 <span className="text-gray-400 text-xs">•</span>
-                <span className="text-xs text-gray-300">Logistics & Supply Chain</span>
+                <span className="text-xs text-gray-300">CFA, Logistics & Supply Chain</span>
               </div>
             </div>
           </Link>

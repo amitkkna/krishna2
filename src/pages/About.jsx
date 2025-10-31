@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const About = () => {
   const stats = [
-    { number: '15+', label: 'Years of Experience' },
+    { number: '25+', label: 'Years of Experience' },
     { number: '500+', label: 'Active Clients' },
     { number: '50K+', label: 'Monthly Deliveries' },
     { number: '200+', label: 'Team Members' },
@@ -65,21 +65,32 @@ const About = () => {
 
   const milestones = [
     {
-      year: '1990s',
-      title: 'The Formative Decades',
-      subtitle: 'Diversification & Expertise',
-      event: 'Our journey began over 25 years ago in Raipur, C.G., focusing on establishing robust Clearing & Forwarding operations.',
+      year: '2000',
+      title: 'The Foundation',
+      subtitle: 'Establishing Excellence in C&F',
+      event: 'Krishna Care began its journey in Raipur, C.G., with a clear vision to deliver total service satisfaction through robust Clearing & Forwarding operations.',
       highlights: [
-        'Strategically diversified across Pesticides & Fertilizer, Pharma, and FMCG sectors',
+        'Established operations in Raipur, Chhattisgarh',
+        'Focused on building strong foundations in logistics and distribution',
+        'Committed to quality service and customer satisfaction from day one'
+      ]
+    },
+    {
+      year: '2005-2010',
+      title: 'Strategic Diversification',
+      subtitle: 'Multi-Sector Expertise',
+      event: 'Strategically expanded across critical sectors, building specialized expertise and establishing ourselves as a trusted partner.',
+      highlights: [
+        'Diversified across Pesticides & Fertilizer, Pharma, and FMCG sectors',
         'Built specialized expertise for each division',
         'Established deep industry relationships and understanding of unique logistical demands'
       ]
     },
     {
-      year: 'Mid 2000s',
-      title: 'Strategic Expansion',
-      subtitle: 'Visionary Leadership',
-      event: 'The dynamic leadership of Dr. Manoj Kumar Agrawal as Managing Director marked a pivotal phase in our expansion.',
+      year: '2010-2015',
+      title: 'Visionary Leadership',
+      subtitle: 'Strategic Growth & Expansion',
+      event: 'Under the dynamic leadership of Dr. Manoj Kumar Agrawal as Managing Director, Krishna Care entered a pivotal phase of strategic expansion.',
       highlights: [
         'Extended reach into Seed, Paint, and Electronics divisions',
         'Became a major market player through strategic alliances',
@@ -87,10 +98,10 @@ const About = () => {
       ]
     },
     {
-      year: '2010s',
+      year: '2015-2020',
       title: 'Infrastructure Excellence',
       subtitle: 'World-Class Facilities',
-      event: 'Parallel to market growth, we continually invested in cutting-edge infrastructure.',
+      event: 'Major investments in cutting-edge infrastructure to support our growing operations and commitment to excellence.',
       highlights: [
         'Developed 73,000+ sq/ft modern warehouses in Gondwara and Tatibhand, Raipur',
         '100,000 sq/ft fully computerized Head Office complex',
@@ -99,10 +110,10 @@ const About = () => {
       ]
     },
     {
-      year: '2020s',
+      year: '2020-2025',
       title: 'Operational Excellence',
       subtitle: 'Security & Performance',
-      event: 'Achieved consistent same-day dispatch rates exceeding 90%, reaching 100% in peak months.',
+      event: 'Achieved industry-leading operational standards with consistent same-day dispatch rates exceeding 90%, reaching 100% in peak months.',
       highlights: [
         '24x7 CCTV surveillance and manned security',
         'Comprehensive fire safety systems',
@@ -111,10 +122,10 @@ const About = () => {
       ]
     },
     {
-      year: 'Present',
+      year: '2025 & Beyond',
       title: 'The Road Ahead',
       subtitle: 'Building Global Partnerships',
-      event: 'Planned expansion of another 100,000 sq/ft state-of-the-art warehouse.',
+      event: 'Embarking on ambitious expansion plans with a proposed 100,000 sq/ft state-of-the-art warehouse.',
       highlights: [
         'Dedicated to employee empowerment culture',
         'Delivering unparalleled service to partners',
@@ -557,59 +568,238 @@ const About = () => {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-custom">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Journey</h2>
-            <p className="text-xl text-gray-600">Key milestones in our growth story</p>
-          </div>
-          <div className="max-w-5xl mx-auto">
-            {milestones.map((milestone, index) => (
+      {/* Timeline - Premium Design */}
+      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
+        {/* Animated Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-primary-100/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-yellow-100/20 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        </div>
+
+        <div className="container-custom relative z-10">
+          {/* Enhanced Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="text-center mb-24"
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              transition={{ duration: 0.5, type: "spring" }}
+              viewport={{ once: true }}
+              className="inline-block mb-6"
+            >
+              <div className="relative">
+                <div className="absolute inset-0 bg-primary-400/20 blur-xl rounded-full"></div>
+                <span className="relative inline-flex items-center gap-2 text-primary-700 font-bold text-sm uppercase tracking-widest bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full border-2 border-primary-200 shadow-lg">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                    <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd"/>
+                  </svg>
+                  25 Years of Excellence
+                </span>
+              </div>
+            </motion.div>
+
+            <h2 className="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary-900 via-primary-700 to-blue-600 mb-8 leading-tight">
+              Our Journey
+            </h2>
+
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: "6rem" }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="h-2 bg-gradient-to-r from-primary-600 via-yellow-400 to-primary-600 mx-auto rounded-full mb-8"
+            ></motion.div>
+
+            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
+              A remarkable story of growth, innovation, and unwavering commitment to excellence
+            </p>
+          </motion.div>
+
+          {/* Timeline Container */}
+          <div className="relative max-w-7xl mx-auto">
+            {/* Animated Central Line */}
+            <div className="absolute left-1/2 top-0 bottom-0 w-1 transform -translate-x-1/2 hidden lg:block">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary-300 to-transparent opacity-50"></div>
               <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                initial={{ height: 0 }}
+                whileInView={{ height: "100%" }}
+                transition={{ duration: 2, ease: "easeInOut" }}
                 viewport={{ once: true }}
-                className="flex items-start space-x-6 mb-10 last:mb-0"
-              >
-                <div className="flex-shrink-0">
-                  <div className="w-24 h-24 bg-gradient-to-br from-primary-600 to-primary-700 text-white rounded-2xl flex items-center justify-center font-bold shadow-lg text-sm text-center p-2">
-                    {milestone.year}
-                  </div>
-                </div>
-                <div className="flex-1 bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
-                  {/* Title and Subtitle */}
-                  <div className="mb-4">
-                    <h3 className="text-2xl font-bold text-primary-900 mb-1">{milestone.title}</h3>
-                    <p className="text-lg font-semibold text-primary-600">{milestone.subtitle}</p>
-                  </div>
+                className="absolute top-0 left-0 right-0 bg-gradient-to-b from-primary-600 via-yellow-400 to-primary-600"
+              ></motion.div>
+            </div>
 
-                  {/* Event Description */}
-                  <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                    {milestone.event}
-                  </p>
+            {/* Timeline Items */}
+            <div className="space-y-24">
+              {milestones.map((milestone, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: index * 0.2,
+                    type: "spring",
+                    stiffness: 50
+                  }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className={`relative flex items-center ${
+                    index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                  } flex-col gap-8 lg:gap-0`}
+                >
+                  {/* Year Circle - Center (Between Cards) */}
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    whileInView={{ scale: 1, rotate: 0 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: index * 0.2 + 0.3,
+                      type: "spring"
+                    }}
+                    viewport={{ once: true }}
+                    className="hidden lg:flex lg:w-40 flex-shrink-0 justify-center items-center z-20"
+                  >
+                    <div className="relative">
+                      {/* Glow Effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-yellow-400 rounded-full blur-2xl opacity-60 animate-pulse"></div>
 
-                  {/* Highlights */}
-                  {milestone.highlights && milestone.highlights.length > 0 && (
-                    <ul className="space-y-2">
-                      {milestone.highlights.map((highlight, idx) => (
-                        <li key={idx} className="flex items-start text-gray-600">
-                          <span className="text-primary-600 mr-3 mt-1 flex-shrink-0">
-                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      {/* Circle */}
+                      <div className="relative w-32 h-32 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900 rounded-full shadow-2xl flex items-center justify-center ring-8 ring-white">
+                        <div className="text-center">
+                          <div className="text-white font-bold text-lg leading-tight">{milestone.year}</div>
+                        </div>
+
+                        {/* Animated Ring */}
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                          className="absolute inset-0 rounded-full"
+                          style={{
+                            background: 'conic-gradient(from 0deg, transparent 0%, rgba(250, 204, 21, 0.4) 50%, transparent 100%)'
+                          }}
+                        ></motion.div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Content Card */}
+                  <div className="w-full lg:w-[calc(50%-80px)]">
+                    <motion.div
+                      whileHover={{ scale: 1.03, rotateY: 2 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                      className="group relative"
+                    >
+                      {/* Card Background Glow */}
+                      <div className="absolute -inset-1 bg-gradient-to-r from-primary-600 to-yellow-400 rounded-3xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500"></div>
+
+                      {/* Card */}
+                      <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 hover:border-primary-200 transition-all duration-500">
+                        {/* Card Header */}
+                        <div className="relative h-3 bg-gradient-to-r from-primary-600 via-yellow-400 to-primary-600 overflow-hidden">
+                          <motion.div
+                            animate={{ x: ["0%", "100%"] }}
+                            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                          ></motion.div>
+                        </div>
+
+                        {/* Year Badge for Mobile */}
+                        <div className="lg:hidden bg-gradient-to-r from-primary-600 to-primary-700 px-6 py-4">
+                          <h3 className="text-2xl font-bold text-white">{milestone.year}</h3>
+                        </div>
+
+                        <div className="p-8 lg:p-10">
+                          {/* Icon */}
+                          <motion.div
+                            whileHover={{ rotate: 360 }}
+                            transition={{ duration: 0.6 }}
+                            className="w-16 h-16 bg-gradient-to-br from-primary-100 to-yellow-50 rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:shadow-xl transition-shadow"
+                          >
+                            <svg className="w-8 h-8 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                             </svg>
-                          </span>
-                          <span className="leading-relaxed">{highlight}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              </motion.div>
-            ))}
+                          </motion.div>
+
+                          {/* Title */}
+                          <h4 className="text-3xl font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
+                            {milestone.title}
+                          </h4>
+
+                          <p className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-yellow-600 mb-6">
+                            {milestone.subtitle}
+                          </p>
+
+                          {/* Description */}
+                          <p className="text-gray-700 text-lg leading-relaxed mb-8">
+                            {milestone.event}
+                          </p>
+
+                          {/* Highlights */}
+                          {milestone.highlights && (
+                            <div className="space-y-4">
+                              {milestone.highlights.map((highlight, idx) => (
+                                <motion.div
+                                  key={idx}
+                                  initial={{ opacity: 0, x: -20 }}
+                                  whileInView={{ opacity: 1, x: 0 }}
+                                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                                  viewport={{ once: true }}
+                                  className="flex items-start gap-4 group/highlight"
+                                >
+                                  <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center shadow-md group-hover/highlight:scale-110 transition-transform">
+                                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                                    </svg>
+                                  </div>
+                                  <span className="flex-1 text-gray-600 leading-relaxed group-hover/highlight:text-gray-900 transition-colors">
+                                    {highlight}
+                                  </span>
+                                </motion.div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
+
+          {/* Closing Statement */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mt-32"
+          >
+            <div className="relative inline-block">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-yellow-400 blur-2xl opacity-30 animate-pulse"></div>
+              <div className="relative bg-gradient-to-r from-primary-600 via-primary-700 to-primary-900 text-white px-12 py-6 rounded-2xl shadow-2xl">
+                <div className="flex items-center gap-4">
+                  <motion.svg
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                    className="w-8 h-8"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </motion.svg>
+                  <span className="text-2xl font-bold">The Journey Continues...</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

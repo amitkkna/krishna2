@@ -60,8 +60,8 @@ const ServiceDetail = () => {
       image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200',
       features: [
         {
-          title: 'Climate Control',
-          description: 'Temperature and humidity-controlled environments'
+          title: 'Ambient Warehouse',
+          description: 'Storage at normal room temperature'
         },
         {
           title: 'Inventory Management',
@@ -308,12 +308,12 @@ const ServiceDetail = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gray-900 text-white relative overflow-hidden">
+      <section className="pt-40 pb-20 bg-gray-900 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
         </div>
         <div className="container-custom relative z-10">
-          <Link to="/services" className="inline-flex items-center space-x-2 text-blue-300 hover:text-white mb-6 transition-colors">
+          <Link to="/services" style={{color: '#93c5fd'}} className="inline-flex items-center space-x-2 hover:text-white mb-6 transition-colors">
             <FaArrowLeft />
             <span>Back to Services</span>
           </Link>
@@ -322,9 +322,9 @@ const ServiceDetail = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-4">{service.title}</h1>
-            <p className="text-2xl text-blue-200 mb-8">{service.subtitle}</p>
-            <p className="text-lg text-gray-300 max-w-3xl">{service.description}</p>
+            <h1 style={{color: '#ffffff'}} className="text-5xl md:text-6xl font-bold mb-4">{service.title}</h1>
+            <p style={{color: '#bfdbfe'}} className="text-2xl mb-8">{service.subtitle}</p>
+            <p style={{color: '#d1d5db'}} className="text-lg max-w-3xl">{service.description}</p>
           </motion.div>
         </div>
       </section>

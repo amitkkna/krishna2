@@ -20,37 +20,85 @@ const Gallery = () => {
 
   const categories = ['All', 'General', 'Operations', 'Warehouse', 'Fleet', 'Team', 'Events'];
   
-  // Hero slider items (videos and images)
+  // Hero slider items - images numbered 1-13 from public/images/gallery/
   const heroSlides = [
     {
-      type: 'video',
-      src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      title: 'Our Operations in Action',
-      description: 'See how we deliver excellence every day'
+      type: 'image',
+      src: '/images/gallery/1.jpg',
+      title: 'Krishna Care Operations',
+      description: 'Excellence in warehousing and logistics'
     },
     {
       type: 'image',
-      src: 'https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=1920&h=1080&fit=crop',
+      src: '/images/gallery/2.jpg',
       title: 'Modern Warehouse Facilities',
-      description: 'State-of-the-art storage and logistics'
+      description: 'State-of-the-art storage solutions'
     },
     {
       type: 'image',
-      src: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1920&h=1080&fit=crop',
+      src: '/images/gallery/3.jpg',
+      title: 'Our Infrastructure',
+      description: 'World-class logistics facilities'
+    },
+    {
+      type: 'image',
+      src: '/images/gallery/4.jpg',
+      title: 'Professional Operations',
+      description: 'Efficient warehouse management'
+    },
+    {
+      type: 'image',
+      src: '/images/gallery/5.jpg',
+      title: 'Our Fleet',
+      description: 'Reliable transportation solutions'
+    },
+    {
+      type: 'image',
+      src: '/images/gallery/6.jpg',
+      title: 'Logistics Excellence',
+      description: 'Comprehensive supply chain services'
+    },
+    {
+      type: 'image',
+      src: '/images/gallery/7.jpg',
+      title: 'Storage Solutions',
+      description: 'Advanced warehousing technology'
+    },
+    {
+      type: 'image',
+      src: '/images/gallery/8.jpg',
+      title: 'Team Operations',
+      description: 'Dedicated professionals at work'
+    },
+    {
+      type: 'image',
+      src: '/images/gallery/9.jpg',
+      title: 'Warehouse Management',
+      description: 'Efficient inventory systems'
+    },
+    {
+      type: 'image',
+      src: '/images/gallery/10.jpg',
+      title: 'Our Facilities',
+      description: 'Modern warehouse infrastructure'
+    },
+    {
+      type: 'image',
+      src: '/images/gallery/11.jpg',
+      title: 'Operations in Action',
+      description: 'See how we deliver excellence'
+    },
+    {
+      type: 'image',
+      src: '/images/gallery/12.jpg',
+      title: 'Distribution Network',
+      description: 'Nationwide logistics coverage'
+    },
+    {
+      type: 'image',
+      src: '/images/gallery/13.jpg',
       title: 'Professional Team',
-      description: 'Dedicated experts serving you'
-    },
-    {
-      type: 'video',
-      src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
-      title: 'Fleet Management',
-      description: 'Efficient transportation solutions'
-    },
-    {
-      type: 'image',
-      src: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&h=1080&fit=crop',
-      title: 'Quality Service',
-      description: 'Customer satisfaction guaranteed'
+      description: 'Your trusted C&F partner'
     }
   ];
 

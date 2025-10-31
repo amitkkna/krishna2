@@ -24,16 +24,16 @@ export const footerTranslations = {
       hi: "संपर्क जानकारी"
     },
     address: {
-      en: "123 Logistics Avenue, Mumbai, Maharashtra 400001, India",
-      hi: "123 लॉजिस्टिक्स एवेन्यू, मुंबई, महाराष्ट्र 400001, भारत"
+      en: "Gondwara, Raipur, Chhattisgarh 492015, India",
+      hi: "गोंदवारा, रायपुर, छत्तीसगढ़ 492015, भारत"
     },
     phone: {
-      en: "+91 123 456 7890",
-      hi: "+91 123 456 7890"
+      en: "+91 771 4081000",
+      hi: "+91 771 4081000"
     },
     email: {
-      en: "info@krishnacare.com",
-      hi: "info@krishnacare.com"
+      en: "krishnacare.cfa@gmail.com",
+      hi: "krishnacare.cfa@gmail.com"
     },
     hours: {
       en: "Mon - Sat: 9:00 AM - 6:00 PM",

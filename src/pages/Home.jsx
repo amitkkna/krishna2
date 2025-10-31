@@ -182,25 +182,32 @@ const Home = () => {
 
   const heroSlides = [
     {
-      type: 'image',
-      url: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&h=800&fit=crop',
-      title: `${t(homeTranslations.hero.title)} ${t(homeTranslations.hero.logistics)}`,
-      subtitle: t(homeTranslations.hero.subtitle),
+      type: 'video',
+      url: '/videos/krishnacare.mp4',
+      title: 'Warehousing & Logistics Excellence',
+      subtitle: 'Comprehensive supply chain solutions with state-of-the-art warehousing and reliable logistics services',
       label: t(navigationTranslations.about).toUpperCase()
     },
     {
       type: 'image',
-      url: 'https://plus.unsplash.com/premium_photo-1749979042840-2a7d448c64f8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1632',
-      title: t(homeTranslations.services.warehousing.title),
-      subtitle: t(homeTranslations.services.warehousing.description),
-      label: t(navigationTranslations.services).toUpperCase()
+      url: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&h=800&fit=crop',
+      title: 'Integrated Logistics Solutions',
+      subtitle: 'Nationwide distribution network with real-time tracking and on-time delivery guarantee',
+      label: 'LOGISTICS'
+    },
+    {
+      type: 'video',
+      url: '/videos/krishnacare2.mp4',
+      title: 'Advanced Warehousing Facilities',
+      subtitle: 'State-of-the-art storage solutions with 126,000+ sq/ft capacity and modern infrastructure',
+      label: 'WAREHOUSING'
     },
     {
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1920&h=800&fit=crop',
-      title: t(homeTranslations.services.transportation.title),
-      subtitle: t(homeTranslations.services.transportation.description),
-      label: 'TECHNOLOGY'
+      url: 'https://plus.unsplash.com/premium_photo-1749979042840-2a7d448c64f8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1632',
+      title: 'End-to-End Supply Chain Management',
+      subtitle: 'From storage to delivery - complete logistics solutions tailored to your business needs',
+      label: 'SOLUTIONS'
     }
   ];
 
@@ -322,7 +329,7 @@ const Home = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t(homeTranslations.services.title)}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive Warehousing & Logistics Solutions
+              Comprehensive Warehousing & Logistics Solutions as a C&F
             </p>
           </div>
 
@@ -397,7 +404,7 @@ const Home = () => {
                   Starting from our flagship facility in Gondwara in 1996, we have been offering 
                   customized logistics solutions and advisory services. Our "Partner First" approach, 
                   quality focus, and commitment to excellence have helped us build lasting relationships 
-                  with leading brands across Pharma, Pesticides, Paints, and FMCG sectors.
+                  with leading brands across Pharma, Pesticides & Seed, Paints, Electronics, Cosmetics and FMCG sectors.
                 </p>
                 <p>
                   The trust built over the decades has enabled us to serve 30+ premium brands with 
@@ -422,9 +429,9 @@ const Home = () => {
                   </div>
                   
                   <div className="relative z-10">
-                    <div className="text-sm font-semibold text-white/90 mb-3">24+ Years Experience</div>
-                    <div className="text-5xl font-bold text-white mb-2">24+</div>
-                    <div className="text-sm text-white/80">Years in Logistics</div>
+                    <div className="text-sm font-semibold text-white mb-3">Experience</div>
+                    <div className="text-5xl font-bold text-white mb-3">25+</div>
+                    <div className="text-sm text-white font-semibold">Years in CFA</div>
                   </div>
                 </motion.div>
 
@@ -442,9 +449,9 @@ const Home = () => {
                   </div>
                   
                   <div className="relative z-10">
-                    <div className="text-sm font-semibold text-white/90 mb-3">Trusted Partners</div>
-                    <div className="text-5xl font-bold text-white mb-2">30+</div>
-                    <div className="text-sm text-white/80">Premium Brands</div>
+                    <div className="text-sm font-semibold text-white mb-3">Trusted Partners</div>
+                    <div className="text-5xl font-bold text-white mb-3">30+</div>
+                    <div className="text-sm text-white font-semibold">Premium Brands</div>
                   </div>
                 </motion.div>
 
@@ -462,9 +469,9 @@ const Home = () => {
                   </div>
                   
                   <div className="relative z-10">
-                    <div className="text-sm font-semibold text-white/90 mb-3">Full Coverage</div>
-                    <div className="text-5xl font-bold text-white mb-2">100%</div>
-                    <div className="text-sm text-white/80">Chhattisgarh State</div>
+                    <div className="text-sm font-semibold text-white mb-3">Full Coverage</div>
+                    <div className="text-5xl font-bold text-white mb-3">100%</div>
+                    <div className="text-sm text-white font-semibold">Chhattisgarh<br/>State</div>
                   </div>
                 </motion.div>
               </div>

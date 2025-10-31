@@ -50,20 +50,17 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center space-x-2 mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary-600 to-primary-800 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">KC</span>
+            <Link to="/" className="flex items-center space-x-3 mb-4">
+              <div className="w-14 h-14 bg-gradient-to-br from-primary-600 to-primary-800 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
+                <span className="text-white font-bold text-2xl">KC</span>
               </div>
-              <div>
-                <h3 className="text-xl font-bold text-white font-heading">Krishna Care</h3>
-                <div className="flex items-center space-x-2 mt-0.5">
-                  <span className="text-xs font-medium text-yellow-400">Asha Enterprises</span>
-                  <span className="text-gray-500 text-xs">•</span>
-                  <span className="text-xs text-gray-400">Logistics & Supply Chain</span>
-                </div>
+              <div className="flex flex-col">
+                <h3 className="text-2xl font-bold text-white font-heading leading-tight">Krishna Care</h3>
+                <span className="text-sm font-semibold text-yellow-400 leading-tight">Asha Enterprises</span>
+                <span className="text-xs text-gray-400 leading-tight mt-0.5">Logistics & Supply Chain</span>
               </div>
             </Link>
-            <p className="text-sm text-gray-400 mb-6">
+            <p className="text-sm text-gray-400 mb-6 leading-relaxed">
               {t(footerTranslations.tagline)}
             </p>
             
@@ -160,7 +157,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/services/consulting" className="text-sm hover:text-primary-400 transition-colors inline-block">
+                <Link to="/services/supply-chain-management" className="text-sm hover:text-primary-400 transition-colors inline-block">
                   {t(navigationTranslations.supplyChain)}
                 </Link>
               </li>
@@ -184,13 +181,13 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-3">
                 <FaPhone className="text-primary-500 flex-shrink-0" />
-                <a href="tel:+911234567890" className="text-sm hover:text-primary-400 transition-colors">
+                <a href="tel:+917714081000" className="text-sm hover:text-primary-400 transition-colors">
                   {t(footerTranslations.contact.phone)}
                 </a>
               </li>
               <li className="flex items-center space-x-3">
                 <FaEnvelope className="text-primary-500 flex-shrink-0" />
-                <a href="mailto:info@krishnacare.com" className="text-sm hover:text-primary-400 transition-colors">
+                <a href="mailto:krishnacare.cfa@gmail.com" className="text-sm hover:text-primary-400 transition-colors">
                   {t(footerTranslations.contact.email)}
                 </a>
               </li>
