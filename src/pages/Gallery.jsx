@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaTimes, FaChevronLeft, FaChevronRight, FaSearch, FaPlay, FaPause } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { FaTimes, FaChevronLeft, FaChevronRight, FaSearch } from 'react-icons/fa';
 import axios from 'axios';
 
 const Gallery = () => {
@@ -236,115 +236,95 @@ const Gallery = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
-      {/* Hero Section with Video/Image Slider */}
-      <section className="relative h-[600px] md:h-[700px] overflow-hidden bg-black">
-        {/* Slides */}
-        <AnimatePresence mode="wait">
+      {/* Hero Slider Section */}
+      <section className="relative h-[500px] md:h-[600px] overflow-hidden">
+        {/* Slider Images/Videos */}
+        <div className="relative h-full">
           {heroSlides.map((slide, index) => (
-            index === currentSlide && (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.7 }}
-                className="absolute inset-0"
-              >
-                {slide.type === 'video' ? (
-                  <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-full object-cover"
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ${
+                index === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              {slide.type === 'video' ? (
+                <video
+                  src={slide.src}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <img
+                  src={slide.src}
+                  alt={slide.title}
+                  className="w-full h-full object-cover"
+                />
+              )}
+
+              {/* Light Overlay for text readability - REDUCED darkness */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent"></div>
+
+              {/* Slide Content */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="container-custom relative z-10 text-center text-white px-4">
+                  <motion.h1
+                    key={`title-${index}`}
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                    className="text-4xl md:text-6xl font-bold mb-4 font-heading drop-shadow-lg"
                   >
-                    <source src={slide.src} type="video/mp4" />
-                  </video>
-                ) : (
-                  <img
-                    src={slide.src}
-                    alt={slide.title}
-                    className="w-full h-full object-cover"
-                  />
-                )}
-                
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70"></div>
-                
-                {/* Content */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="container-custom relative z-10 text-center text-white px-4">
-                    <motion.h1
-                      initial={{ y: 30, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.2, duration: 0.6 }}
-                      className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 font-heading"
-                    >
-                      Our <span className="text-yellow-300">Gallery</span>
-                    </motion.h1>
-                    <motion.h2
-                      initial={{ y: 30, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.3, duration: 0.6 }}
-                      className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-3"
-                    >
-                      {slide.title}
-                    </motion.h2>
-                    <motion.p
-                      initial={{ y: 30, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.4, duration: 0.6 }}
-                      className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto"
-                    >
-                      {slide.description}
-                    </motion.p>
-                  </div>
+                    {slide.title}
+                  </motion.h1>
+                  <motion.p
+                    key={`desc-${index}`}
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.6 }}
+                    className="text-lg md:text-xl text-gray-100 max-w-2xl mx-auto drop-shadow-lg"
+                  >
+                    {slide.description}
+                  </motion.p>
                 </div>
-              </motion.div>
-            )
+              </div>
+            </div>
           ))}
-        </AnimatePresence>
+        </div>
 
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-gray-900 p-3 rounded-full shadow-lg transition-all hover:scale-110"
           aria-label="Previous slide"
         >
-          <FaChevronLeft size={24} />
+          <FaChevronLeft className="text-xl" />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-gray-900 p-3 rounded-full shadow-lg transition-all hover:scale-110"
           aria-label="Next slide"
         >
-          <FaChevronRight size={24} />
+          <FaChevronRight className="text-xl" />
         </button>
 
-        {/* Slide Indicators */}
+        {/* Slider Dots */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
           {heroSlides.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`transition-all duration-300 rounded-full ${
+              className={`transition-all ${
                 index === currentSlide
-                  ? 'w-12 h-3 bg-yellow-300'
-                  : 'w-3 h-3 bg-white/50 hover:bg-white/80'
-              }`}
+                  ? 'w-8 bg-white'
+                  : 'w-3 bg-white/50 hover:bg-white/75'
+              } h-3 rounded-full`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
-
-        {/* Auto-play Toggle */}
-        <button
-          onClick={() => setIsAutoPlay(!isAutoPlay)}
-          className="absolute bottom-8 right-8 z-20 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full transition-all duration-300"
-          aria-label={isAutoPlay ? 'Pause autoplay' : 'Play autoplay'}
-        >
-          {isAutoPlay ? <FaPause size={16} /> : <FaPlay size={16} />}
-        </button>
       </section>
 
       {/* Filters Section */}

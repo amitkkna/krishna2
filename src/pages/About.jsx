@@ -68,7 +68,7 @@ const About = () => {
       year: '2000',
       title: 'The Foundation',
       subtitle: 'Establishing Excellence in C&F',
-      event: 'Krishna Care began its journey in Raipur, C.G., with a clear vision to deliver total service satisfaction through robust Clearing & Forwarding operations.',
+      event: 'Krishna Care began its journey in Raipur, C.G., with a clear vision to deliver total service satisfaction through robust Carrying & Forwarding operations.',
       highlights: [
         'Established operations in Raipur, Chhattisgarh',
         'Focused on building strong foundations in logistics and distribution',

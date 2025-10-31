@@ -185,11 +185,16 @@ const Footer = () => {
                   {t(footerTranslations.contact.phone)}
                 </a>
               </li>
-              <li className="flex items-center space-x-3">
-                <FaEnvelope className="text-primary-500 flex-shrink-0" />
-                <a href="mailto:krishnacare.cfa@gmail.com" className="text-sm hover:text-primary-400 transition-colors">
-                  {t(footerTranslations.contact.email)}
-                </a>
+              <li className="flex items-start space-x-3">
+                <FaEnvelope className="text-primary-500 mt-1 flex-shrink-0" />
+                <div className="flex flex-col space-y-1">
+                  <a href="mailto:ashaenterprises.kc@gmail.com" className="text-sm hover:text-primary-400 transition-colors">
+                    ashaenterprises.kc@gmail.com
+                  </a>
+                  <a href="mailto:kc.krishnacare@yahoo.com" className="text-sm hover:text-primary-400 transition-colors">
+                    kc.krishnacare@yahoo.com
+                  </a>
+                </div>
               </li>
               <li className="flex items-start space-x-3">
                 <FaClock className="text-primary-500 mt-1 flex-shrink-0" />

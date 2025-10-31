@@ -65,14 +65,14 @@ const Contact = () => {
       city: 'Head Office - Gondwara',
       address: 'Krishna Care (Gondwara), Plot No. 12/4, 12/1, Phase no. 108, Near Lingraj Cold Storage, Behind Durga Petrol Pump, Ring Road No., Gondwara Raipur (C.G.)',
       phone: '+91 700965959',
-      email: 'info@krishnacare.com',
+      email: 'ashaenterprises.kc@gmail.com',
       type: 'Head Office & Primary Logistics Hub'
     },
     {
       city: 'Corporate Office - Shanker Nagar',
       address: '2,000 sq ft Modern Facility, Shanker Nagar, Raipur, Chhattisgarh, India',
       phone: '+91 700965959',
-      email: 'support@krishnacare.com',
+      email: 'kc.krishnacare@yahoo.com',
       type: 'Corporate Office'
     }
   ];
@@ -195,7 +195,7 @@ const Contact = () => {
               {
                 icon: <FaEnvelope size={24} />,
                 title: t(contactTranslations.info.email.title),
-                details: ['info@krishnacare.com', 'support@krishnacare.com'],
+                details: ['ashaenterprises.kc@gmail.com', 'kc.krishnacare@yahoo.com'],
                 color: 'from-green-500 to-green-600'
               },
               {

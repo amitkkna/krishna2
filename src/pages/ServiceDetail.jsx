@@ -10,7 +10,7 @@ const ServiceDetail = () => {
       title: 'Primary Transportation',
       subtitle: 'Reliable, efficient transportation solutions for your business',
       description: 'Our comprehensive transportation services ensure your goods reach their destination safely and on time. With a modern fleet and advanced tracking systems, we provide complete visibility throughout the journey.',
-      image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1200',
+      image: '/images/services/transportation.jpg',
       features: [
         {
           title: 'Primary & Secondary Distribution',
@@ -67,7 +67,7 @@ const ServiceDetail = () => {
       title: 'Warehousing Solutions',
       subtitle: 'State-of-the-art facilities for your storage needs',
       description: 'Our modern warehousing facilities are equipped with advanced technology to ensure optimal storage conditions and efficient inventory management. From receiving to dispatch, we handle your goods with care.',
-      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200',
+      image: '/images/services/warehousing.jpg',
       features: [
         {
           title: 'Secure & Optimized Storage',
@@ -129,7 +129,7 @@ const ServiceDetail = () => {
       title: 'Order Fulfillment & Operations',
       subtitle: 'Precision order processing with complete compliance',
       description: 'Our order fulfillment services handle the complete cycle from order receipt to delivery with accuracy, quality control, and full regulatory compliance. We ensure timely processing and proper documentation for every shipment.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200',
+      image: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=1200&q=80',
       features: [
         {
           title: 'Timely Order Processing',
@@ -184,7 +184,7 @@ const ServiceDetail = () => {
       title: 'Supply Chain Management',
       subtitle: 'Strategic management for supply chain excellence',
       description: 'Our expert team manages your supply chain operations to identify optimization opportunities, reduce costs, and improve efficiency. We provide actionable insights backed by data and industry best practices.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200',
+      image: '/images/services/supply-chain-management.jpg',
       features: [
         {
           title: 'Supply Chain Analysis',
@@ -231,7 +231,7 @@ const ServiceDetail = () => {
       title: 'Integrated Solutions',
       subtitle: 'End-to-end logistics management',
       description: 'Our integrated solutions combine all our services into a seamless, customized logistics operation. We manage your entire supply chain from procurement to final delivery, giving you more time to focus on your core business.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200',
+      image: '/images/services/integrated-solutions.jpg',
       features: [
         {
           title: 'Customized Solutions',
@@ -303,7 +303,7 @@ const ServiceDetail = () => {
       title: 'Customs Clearance',
       subtitle: 'Expert customs and trade compliance services',
       description: 'Our customs clearance specialists ensure smooth and compliant international trade operations. We handle all documentation, regulations, and procedures to expedite your shipments through customs.',
-      image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1200',
+      image: '/images/services/customs-clearance.jpg',
       features: [
         {
           title: 'Import/Export Documentation',
@@ -413,12 +413,9 @@ const ServiceDetail = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="pt-40 pb-20 bg-gray-900 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
-        </div>
+      <section className="pt-40 pb-20 gradient-bg relative overflow-hidden">
         <div className="container-custom relative z-10">
-          <Link to="/services" style={{color: '#93c5fd'}} className="inline-flex items-center space-x-2 hover:text-white mb-6 transition-colors">
+          <Link to="/services" className="inline-flex items-center space-x-2 text-blue-300 hover:text-white mb-6 transition-colors">
             <FaArrowLeft />
             <span>Back to Services</span>
           </Link>
@@ -427,9 +424,9 @@ const ServiceDetail = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 style={{color: '#ffffff'}} className="text-5xl md:text-6xl font-bold mb-4">{service.title}</h1>
-            <p style={{color: '#bfdbfe'}} className="text-2xl mb-8">{service.subtitle}</p>
-            <p style={{color: '#d1d5db'}} className="text-lg max-w-3xl">{service.description}</p>
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 text-white">{service.title}</h1>
+            <p className="text-2xl mb-8 text-blue-100">{service.subtitle}</p>
+            <p className="text-lg max-w-3xl text-gray-200">{service.description}</p>
           </motion.div>
         </div>
       </section>

@@ -216,13 +216,6 @@ const Home = () => {
       label: t(navigationTranslations.about).toUpperCase()
     },
     {
-      type: 'image',
-      url: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&h=800&fit=crop',
-      title: 'Integrated Logistics Solutions',
-      subtitle: 'Nationwide distribution network with real-time tracking and on-time delivery guarantee',
-      label: 'LOGISTICS'
-    },
-    {
       type: 'video',
       url: '/videos/krishnacare2.mp4',
       title: 'Advanced Warehousing Facilities',
@@ -231,7 +224,14 @@ const Home = () => {
     },
     {
       type: 'image',
-      url: 'https://plus.unsplash.com/premium_photo-1749979042840-2a7d448c64f8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1632',
+      url: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=1920&h=800&fit=crop&q=80',
+      title: 'Integrated Logistics Solutions',
+      subtitle: 'Nationwide distribution network with real-time tracking and on-time delivery guarantee',
+      label: 'LOGISTICS'
+    },
+    {
+      type: 'image',
+      url: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1920&h=800&fit=crop&q=80',
       title: 'End-to-End Supply Chain Management',
       subtitle: 'From storage to delivery - complete logistics solutions tailored to your business needs',
       label: 'SOLUTIONS'
@@ -275,8 +275,8 @@ const Home = () => {
                   className="w-full h-full object-cover"
                 />
               )}
-              {/* Dark Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0e1a2a]/95 via-[#0e1a2a]/70 to-transparent"></div>
+              {/* Light Overlay for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0e1a2a]/40 via-transparent to-transparent"></div>
             </div>
 
             {/* Content */}
@@ -422,7 +422,7 @@ const Home = () => {
               </h2>
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p>
-                  We are a leading C&F (Clearing & Forwarding) agency and logistics solutions provider, 
+                  We are a leading C&F (Carrying & Forwarding) agency and logistics solutions provider, 
                   offering comprehensive services across the supply chain. With over 25 years of experience 
                   in the industry, Krishna Care has established itself as a trusted partner for businesses 
                   across Chhattisgarh and beyond.
@@ -513,9 +513,9 @@ const Home = () => {
               className="relative"
             >
               <div className="rounded-3xl overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop" 
-                  alt="About Krishna Care" 
+                <img
+                  src="/images/about/warehouse-interior.jpg"
+                  alt="About Krishna Care - Modern Warehouse Interior"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -536,15 +536,16 @@ const Home = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
+              className="order-2 lg:order-1"
             >
-              <img 
-                src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop" 
-                alt="Gallery" 
-                className="rounded-2xl shadow-2xl"
+              <img
+                src="/images/operations/warehouse-logistics.png"
+                alt="Krishna Care Operations Gallery - Warehouse and Logistics"
+                className="rounded-2xl shadow-2xl w-full h-auto"
               />
             </motion.div>
 
-            <div>
+            <div className="order-1 lg:order-2">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Explore Our <span className="text-primary-600">Operations Gallery</span>
               </h2>
