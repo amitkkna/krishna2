@@ -417,19 +417,19 @@ const SOP = () => {
                       {/* Card Content */}
                       <div className="relative bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 group-hover:border-transparent h-full flex flex-col">
                         {/* Icon with Gradient Background */}
-                        <div className="mb-6">
+                        <div className="mb-6 flex justify-center">
                           <div className={`w-16 h-16 bg-gradient-to-br ${section.color} text-white rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
                             <span className="text-2xl">{feature.icon}</span>
                           </div>
                         </div>
 
                         {/* Title */}
-                        <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-gray-900 group-hover:to-gray-700 transition-all">
+                        <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-gray-900 group-hover:to-gray-700 transition-all text-center">
                           {feature.title}
                         </h4>
 
                         {/* Description */}
-                        <p className="text-gray-700 leading-relaxed text-base flex-grow">
+                        <p className="text-gray-700 leading-relaxed text-base flex-grow text-center">
                           {feature.description}
                         </p>
 

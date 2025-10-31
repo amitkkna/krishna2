@@ -24,7 +24,8 @@ import {
   FaHeadset,
   FaAward,
   FaVideo,
-  FaTools
+  FaTools,
+  FaTasks
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
@@ -138,23 +139,23 @@ const Home = () => {
 
   const testimonials = [
     {
-      name: 'Rajesh Kumar',
-      position: 'Supply Chain Director',
-      company: 'ABC Manufacturing',
+      name: 'Nikhilesh Sharma',
+      position: 'Logistics Manager',
+      company: 'Coromandel International Limited',
       content: 'Krishna Care transformed our logistics operations. Their technology-driven approach reduced our costs by 25% while improving delivery times.',
       rating: 5
     },
     {
-      name: 'Priya Sharma',
-      position: 'Operations Manager',
-      company: 'XYZ Retail',
+      name: 'Remoil Jain',
+      position: 'Logistics Manager',
+      company: 'Atul Limited',
       content: 'Outstanding service and professionalism. The real-time tracking system has given us complete visibility over our supply chain.',
       rating: 5
     },
     {
-      name: 'Amit Patel',
-      position: 'CEO',
-      company: 'Tech Solutions Ltd',
+      name: 'Hitendra Shah',
+      position: 'RCM',
+      company: 'Shalimar Paints',
       content: 'A reliable partner for our growing business. Their warehousing solutions and consulting services have been invaluable.',
       rating: 5
     }
@@ -184,7 +185,7 @@ const Home = () => {
     {
       type: 'video',
       url: '/videos/krishnacare.mp4',
-      title: 'Warehousing & Logistics Excellence',
+      title: 'Fast, Precise & Trustworthy C&F Warehosing and Logistics Solutions',
       subtitle: 'Comprehensive supply chain solutions with state-of-the-art warehousing and reliable logistics services',
       label: t(navigationTranslations.about).toUpperCase()
     },
@@ -396,7 +397,7 @@ const Home = () => {
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p>
                   We are a leading C&F (Carrying & Forwarding) agency and logistics solutions provider, 
-                  offering comprehensive services across the supply chain. With over 24 years of experience 
+                  offering comprehensive services across the supply chain. With over 25 years of experience 
                   in the industry, Krishna Care has established itself as a trusted partner for businesses 
                   across Chhattisgarh and beyond.
                 </p>

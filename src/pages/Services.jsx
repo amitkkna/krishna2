@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { 
-  FaTruck, 
-  FaWarehouse, 
-  FaChartLine, 
+import {
+  FaTruck,
+  FaWarehouse,
+  FaChartLine,
   FaCogs,
   FaArrowRight,
   FaCheckCircle,
@@ -10,7 +10,8 @@ import {
   FaBoxes,
   FaClipboardList,
   FaShieldAlt,
-  FaFileInvoice
+  FaFileInvoice,
+  FaTasks
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
@@ -22,12 +23,15 @@ const Services = () => {
       title: 'Warehousing Solutions',
       description: 'Modern warehousing facilities equipped with advanced inventory management systems.',
       features: [
-        'Ambient Warehouse',
-        'Inventory Management',
+        'Secure & Optimized Storage (Dedicated/Shared)',
+        'Real-time Stock Tracking & Cycle Counting',
+        'FIFO/LIFO Management',
+        'Batch Control',
         'Pick and Pack Services',
         'Cross-Docking',
         'Distribution Services',
-        'Warehouse Management System (WMS)'
+        'Warehouse Management System (WMS)',
+        'Temperature-Controlled Storage'
       ],
       color: 'from-green-500 to-green-700',
       image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=800'
@@ -38,15 +42,35 @@ const Services = () => {
       title: 'Primary Transportation',
       description: 'Comprehensive transportation solutions with a fleet of modern vehicles and real-time tracking.',
       features: [
+        'Primary & Secondary Distribution',
         'Full Truckload (FTL) Services',
         'Less Than Truckload (LTL) Services',
         'Real-time GPS Tracking',
         'Route Optimization',
+        'Fleet Management & Coordination',
         'Temperature-Controlled Transport',
         'Multi-Modal Transportation'
       ],
       color: 'from-blue-500 to-blue-700',
       image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800'
+    },
+    {
+      id: 'order-fulfillment',
+      icon: <FaTasks size={48} />,
+      title: 'Order Fulfillment & Operations',
+      description: 'End-to-end order processing with precision, quality control, and complete compliance.',
+      features: [
+        'Timely Order Processing & Fulfillment',
+        'Accurate Picking & Quality Control',
+        'Professional Packing & Labeling',
+        'E-Way Bills & GST Compliance',
+        'Complete Documentation Support',
+        'Returns & Reverse Logistics',
+        'Product Recall Management',
+        'Damaged Goods Handling'
+      ],
+      color: 'from-orange-500 to-orange-700',
+      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800'
     },
     {
       id: 'supply-chain-management',
@@ -89,11 +113,16 @@ const Services = () => {
         'Customized Solutions',
         'End-to-End Management',
         'Technology Integration',
+        'Online Tracking Portals',
+        'ERP System Integration',
+        'Real-time Visibility & Tracking',
+        'Stock Aging Reports',
+        'Dispatch Efficiency Tracking',
+        'Inventory Movement Analytics',
         'Dedicated Account Management',
-        'Scalable Operations',
-        'Analytics & Reporting'
+        'Scalable Operations'
       ],
-      color: 'from-orange-500 to-orange-700',
+      color: 'from-teal-500 to-teal-700',
       image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800'
     },
     {

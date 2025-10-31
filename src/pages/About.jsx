@@ -1,4 +1,4 @@
-import { FaUsers, FaTrophy, FaHeart, FaRocket, FaLinkedinIn } from 'react-icons/fa';
+import { FaUsers, FaTrophy, FaHeart, FaRocket, FaLinkedinIn, FaBuilding } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const About = () => {
@@ -138,19 +138,39 @@ const About = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="gradient-bg text-white pt-40 pb-16">
+      <section className="bg-gradient-to-br from-[#0f1729] via-[#1a2947] to-[#2d3f5f] text-white pt-40 pb-32">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
+            className="text-center max-w-5xl mx-auto"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            {/* Icon */}
+            <div className="mb-8 flex justify-center">
+              <div className="w-24 h-24 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-2xl">
+                <FaBuilding size={48} className="text-white" />
+              </div>
+            </div>
+
+            {/* Main Heading */}
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               About <span className="text-yellow-400">Krishna Care</span>
             </h1>
-            <p className="text-lg text-gray-200">
-              Pioneering the future of logistics with technology, innovation, and unwavering commitment to excellence
+
+            {/* Subtitle with underline */}
+            <div className="mb-8">
+              <h2 className="text-2xl md:text-3xl font-semibold text-gray-200 inline-block border-b-4 border-yellow-400 pb-2">
+                Pioneering Excellence in C&F, Warehousing and Logistics
+              </h2>
+            </div>
+
+            {/* Description */}
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
+              With <span className="text-yellow-400 font-semibold">25+ years of experience</span>, Krishna Care has established itself as a{' '}
+              <span className="text-yellow-400 font-semibold">trusted leader</span> in warehousing, logistics and supply chain solutions.
+              We combine <span className="text-yellow-400 font-semibold">cutting-edge technology</span>, <span className="text-yellow-400 font-semibold">innovation</span>,
+              and unwavering commitment to deliver <span className="text-yellow-400 font-semibold">total service satisfaction</span> to our valued clients.
             </p>
           </motion.div>
         </div>
@@ -182,49 +202,65 @@ const About = () => {
       {/* Story */}
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Story</h2>
-              <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
-                <p>
-                  Every great journey begins with a clear vision. Two and a half decades ago, Krishna Care was founded by
-                  <span className="font-semibold text-primary-700"> Mr. Krishna Kumar Agrawal</span>, with the profound commitment to deliver nothing less than
-                  <span className="font-semibold">'total service satisfaction.'</span> From its inception, the company was envisioned not just as a logistics provider,
-                  but as a genuine partner, dedicated to proactively identifying and meticulously fulfilling the evolving needs of its clients.
-                </p>
-                <p>
-                  This foundational philosophy, deeply rooted in quality and unwavering reliability, quickly established Krishna Care as a trusted name.
-                  Central to this ethos is the firm belief that our employees are our greatest strength.
-                </p>
-                <p>
-                  Mr. Agrawal instilled a culture where continuous involvement and hard work of every team member are not just valued, but are essential
-                  to achieving our collective organizational objectives. This people-first approach has fostered a dedicated workforce that carries the
-                  company's commitment to excellence in every task.
-                </p>
-                <p>
-                  With this solid foundation, Krishna Care embarked on a path of strategic growth, laying the groundwork for the comprehensive C&F and
-                  distribution powerhouse it is today.
-                </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="rounded-3xl overflow-hidden shadow-2xl"
+          >
+            <div className="grid lg:grid-cols-2 lg:grid-rows-1">
+              {/* Left Side - Image */}
+              <div className="relative h-[350px] lg:h-auto">
+                <img
+                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80"
+                  alt="Krishna Care Team Collaboration"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                {/* Gradient Overlay for smooth transition */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-[#c75d2c]/30"></div>
               </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800" 
-                alt="Our Team" 
-                className="rounded-2xl shadow-2xl"
-              />
-            </motion.div>
-          </div>
+
+              {/* Right Side - Content with Orange Background */}
+              <div className="bg-gradient-to-br from-[#c75d2c] via-[#d97439] to-[#e89056] p-8 md:p-10 lg:p-12 flex flex-col justify-center min-h-[500px]">
+                {/* Main Heading */}
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-5">
+                  Our Story
+                </h2>
+
+                {/* Content */}
+                <div className="space-y-4 text-white text-sm md:text-base lg:text-lg leading-relaxed">
+                  <p>
+                    Every great journey begins with a clear vision. Two and a half decades ago, Krishna Care was founded by{' '}
+                    <span className="font-semibold">Mr. Krishna Kumar Agrawal</span>, with the profound commitment to deliver nothing less than{' '}
+                    <span className="font-semibold">'total service satisfaction.'</span>
+                  </p>
+                  <p>
+                    From its inception, the company was envisioned not just as a logistics provider, but as a genuine partner,
+                    dedicated to proactively identifying and meticulously fulfilling the evolving needs of its clients.
+                  </p>
+                  <p>
+                    This foundational philosophy, deeply rooted in{' '}
+                    <span className="font-semibold">quality</span> and{' '}
+                    <span className="font-semibold">unwavering reliability</span>, quickly established Krishna Care as a trusted name.
+                    Central to this ethos is the firm belief that our{' '}
+                    <span className="font-semibold">employees are our greatest strength</span>.
+                  </p>
+                  <p>
+                    Mr. Agrawal instilled a culture where{' '}
+                    <span className="font-semibold">continuous involvement</span> and{' '}
+                    <span className="font-semibold">hard work</span> of every team member are essential
+                    to achieving our collective organizational objectives.
+                  </p>
+                  <p>
+                    With this solid foundation, Krishna Care embarked on a path of{' '}
+                    <span className="font-semibold">strategic growth</span>, laying the groundwork for the comprehensive{' '}
+                    <span className="font-semibold">C&F and distribution powerhouse</span> it is today.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -368,12 +404,11 @@ const About = () => {
               <div className="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 h-full flex flex-col">
                 {/* Photo */}
                 <div className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
-                  <div className="h-96 relative">
+                  <div className="h-[500px] relative">
                     <img
                       src="/images/leadership/chairman.png"
                       alt="Mr. Krishna Kumar Agrawal - Chairman"
-                      className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
-                      style={{objectPosition: 'center center'}}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       onError={(e) => {
                         if (e.target.src.includes('.png')) {
                           e.target.src = '/images/leadership/chairman.jpg';
@@ -386,11 +421,11 @@ const About = () => {
                     <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-primary-900/30 to-transparent flex items-center justify-center" style={{display: 'none'}}>
                       <FaUsers size={80} className="text-white" />
                     </div>
-                    {/* Overlay gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                    {/* Overlay gradient - only at bottom */}
+                    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/60 to-transparent"></div>
 
                     {/* Name overlay on image */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
                       <h3 className="text-3xl font-bold mb-1">Mr. Krishna Kumar Agrawal</h3>
                       <p className="text-lg font-semibold text-yellow-400">Chairman & Founder</p>
                     </div>
@@ -453,12 +488,11 @@ const About = () => {
               <div className="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 h-full flex flex-col">
                 {/* Photo */}
                 <div className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
-                  <div className="h-96 relative">
+                  <div className="h-[500px] relative">
                     <img
                       src="/images/leadership/managing-director.png"
                       alt="Dr. Manoj Kumar Agrawal - Managing Director"
-                      className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
-                      style={{objectPosition: 'center center'}}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       onError={(e) => {
                         if (e.target.src.includes('.png')) {
                           e.target.src = '/images/leadership/managing-director.jpg';
@@ -471,11 +505,11 @@ const About = () => {
                     <div className="absolute inset-0 w-full h-full bg-gradient-to-l from-primary-900/30 to-transparent flex items-center justify-center" style={{display: 'none'}}>
                       <FaRocket size={80} className="text-white" />
                     </div>
-                    {/* Overlay gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                    {/* Overlay gradient - only at bottom */}
+                    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/60 to-transparent"></div>
 
                     {/* Name overlay on image */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
                       <h3 className="text-3xl font-bold mb-1">Dr. Manoj Kumar Agrawal</h3>
                       <p className="text-lg font-semibold text-yellow-400">Managing Director & Founding Member</p>
                     </div>

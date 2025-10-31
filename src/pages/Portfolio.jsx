@@ -43,7 +43,7 @@ const Portfolio = () => {
         { name: 'GMD TRADE & COMMERCE PVT LTD' },
         { name: 'CANBIOSYS', website: 'www.kanbiosys.com' },
         { name: 'USK', website: 'www.uskagrosciences.com' },
-        { name: 'GROWERO TECHNOLOGIES' },
+        { name: 'GROWERO TECHNOLOGIES', website: 'www.growero.in' },
         { name: 'NADIYA FERTILIZER', website: 'www.nadiyabiotechpl.com'},
         { name: 'GEEKEN CHEMICALS', website: 'www.geekenchemicals.com' },
         { name: 'SEA6 ENERGY', website: 'www.sea6energy.com' },

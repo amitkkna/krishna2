@@ -13,6 +13,10 @@ const ServiceDetail = () => {
       image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1200',
       features: [
         {
+          title: 'Primary & Secondary Distribution',
+          description: 'End-to-end movement from manufacturer to retailer'
+        },
+        {
           title: 'Full Truckload (FTL)',
           description: 'Dedicated vehicles for large shipments with direct delivery'
         },
@@ -21,7 +25,7 @@ const ServiceDetail = () => {
           description: 'Cost-effective solutions for smaller shipments'
         },
         {
-          title: 'Real-time Tracking',
+          title: 'Real-time GPS Tracking',
           description: 'GPS-enabled tracking for complete shipment visibility'
         },
         {
@@ -29,21 +33,27 @@ const ServiceDetail = () => {
           description: 'AI-powered route planning for faster deliveries'
         },
         {
-          title: 'Temperature Control',
+          title: 'Fleet Management & Coordination',
+          description: 'Reliable network of carriers and owned fleet'
+        },
+        {
+          title: 'Temperature-Controlled Transport',
           description: 'Refrigerated transport for sensitive goods'
         },
         {
-          title: 'Multi-Modal Options',
+          title: 'Multi-Modal Transportation',
           description: 'Flexible transportation using multiple modes'
         }
       ],
       benefits: [
-        'Reduced transit times',
-        'Lower transportation costs',
-        'Real-time shipment visibility',
-        'Flexible scheduling',
-        'Dedicated support team',
-        'Insurance coverage'
+        'Primary & Secondary Distribution',
+        'Full Truckload (FTL) Services',
+        'Less Than Truckload (LTL) Services',
+        'Real-time GPS Tracking',
+        'Route Optimization',
+        'Fleet Management & Coordination',
+        'Temperature-Controlled Transport',
+        'Multi-Modal Transportation'
       ],
       process: [
         { step: '1', title: 'Request Quote', description: 'Share your requirements' },
@@ -60,15 +70,23 @@ const ServiceDetail = () => {
       image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200',
       features: [
         {
-          title: 'Ambient Warehouse',
-          description: 'Storage at normal room temperature'
+          title: 'Secure & Optimized Storage',
+          description: 'Flexible dedicated and shared storage options'
         },
         {
-          title: 'Inventory Management',
-          description: 'Real-time inventory tracking with WMS'
+          title: 'Real-time Stock Tracking',
+          description: 'Cycle counting and precision inventory control'
         },
         {
-          title: 'Pick & Pack',
+          title: 'FIFO/LIFO Management',
+          description: 'Systematic inventory rotation management'
+        },
+        {
+          title: 'Batch Control',
+          description: 'Track and manage products by batch numbers'
+        },
+        {
+          title: 'Pick & Pack Services',
           description: 'Efficient order fulfillment services'
         },
         {
@@ -76,21 +94,28 @@ const ServiceDetail = () => {
           description: 'Minimize storage time with direct transfer'
         },
         {
-          title: 'Distribution',
+          title: 'Distribution Services',
           description: 'Streamlined distribution to multiple locations'
         },
         {
-          title: 'Security',
-          description: '24/7 surveillance and access control'
+          title: 'Warehouse Management System (WMS)',
+          description: 'Advanced WMS for complete visibility'
+        },
+        {
+          title: 'Temperature-Controlled Storage',
+          description: 'Cold chain and climate-controlled facilities'
         }
       ],
       benefits: [
-        'Flexible storage solutions',
-        'Reduced inventory costs',
-        'Advanced security systems',
-        'Scalable capacity',
-        'Real-time reporting',
-        'Value-added services'
+        'Secure & Optimized Storage (Dedicated/Shared)',
+        'Real-time Stock Tracking & Cycle Counting',
+        'FIFO/LIFO Management',
+        'Batch Control',
+        'Pick and Pack Services',
+        'Cross-Docking',
+        'Distribution Services',
+        'Warehouse Management System (WMS)',
+        'Temperature-Controlled Storage'
       ],
       process: [
         { step: '1', title: 'Receiving', description: 'Goods inspection and check-in' },
@@ -98,6 +123,61 @@ const ServiceDetail = () => {
         { step: '3', title: 'Inventory', description: 'Real-time tracking system' },
         { step: '4', title: 'Fulfillment', description: 'Order processing and packing' },
         { step: '5', title: 'Dispatch', description: 'Timely delivery coordination' }
+      ]
+    },
+    'order-fulfillment': {
+      title: 'Order Fulfillment & Operations',
+      subtitle: 'Precision order processing with complete compliance',
+      description: 'Our order fulfillment services handle the complete cycle from order receipt to delivery with accuracy, quality control, and full regulatory compliance. We ensure timely processing and proper documentation for every shipment.',
+      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200',
+      features: [
+        {
+          title: 'Timely Order Processing',
+          description: 'Complete order cycle from receipt to dispatch'
+        },
+        {
+          title: 'Accurate Picking & Quality Control',
+          description: 'Precision picking with thorough quality checks'
+        },
+        {
+          title: 'Professional Packing & Labeling',
+          description: 'Careful packing with proper product labeling'
+        },
+        {
+          title: 'E-Way Bills & GST Compliance',
+          description: 'Complete GST compliance and E-way bill generation'
+        },
+        {
+          title: 'Complete Documentation Support',
+          description: 'All necessary shipping and legal documentation'
+        },
+        {
+          title: 'Returns & Reverse Logistics',
+          description: 'Efficient handling of returns and reverse flow'
+        },
+        {
+          title: 'Product Recall Management',
+          description: 'Swift and organized product recall processes'
+        },
+        {
+          title: 'Damaged Goods Handling',
+          description: 'Professional management of damaged inventory'
+        }
+      ],
+      benefits: [
+        'Fast order turnaround',
+        'Reduced fulfillment errors',
+        'Full regulatory compliance',
+        'Efficient returns processing',
+        'Complete documentation',
+        'Quality assurance'
+      ],
+      process: [
+        { step: '1', title: 'Order Receipt', description: 'Receive and verify order details' },
+        { step: '2', title: 'Picking', description: 'Accurate item selection' },
+        { step: '3', title: 'Quality Check', description: 'Thorough quality inspection' },
+        { step: '4', title: 'Packing', description: 'Professional packing and labeling' },
+        { step: '5', title: 'Dispatch', description: 'Shipment with documentation' }
       ]
     },
     'supply-chain-management': {
@@ -166,25 +246,50 @@ const ServiceDetail = () => {
           description: 'Seamless system connectivity'
         },
         {
-          title: 'Account Management',
-          description: 'Dedicated support team'
+          title: 'Online Tracking Portals',
+          description: 'Real-time visibility through web portals'
         },
         {
-          title: 'Scalability',
-          description: 'Grow with your business'
+          title: 'ERP System Integration',
+          description: 'Smooth integration with your ERP platforms'
         },
         {
-          title: 'Analytics',
-          description: 'Comprehensive reporting and insights'
+          title: 'Real-time Visibility & Tracking',
+          description: 'Complete transparency of operations'
+        },
+        {
+          title: 'Stock Aging Reports',
+          description: 'Detailed inventory aging analysis'
+        },
+        {
+          title: 'Dispatch Efficiency Tracking',
+          description: 'Monitor and optimize dispatch performance'
+        },
+        {
+          title: 'Inventory Movement Analytics',
+          description: 'Comprehensive movement and flow analysis'
+        },
+        {
+          title: 'Dedicated Account Management',
+          description: 'Personal support team for your account'
+        },
+        {
+          title: 'Scalable Operations',
+          description: 'Grow seamlessly with your business'
         }
       ],
       benefits: [
-        'Single point of contact',
-        'Simplified operations',
-        'Cost efficiency',
-        'Improved visibility',
-        'Faster response times',
-        'Strategic partnership'
+        'Customized Solutions',
+        'End-to-End Management',
+        'Technology Integration',
+        'Online Tracking Portals',
+        'ERP System Integration',
+        'Real-time Visibility & Tracking',
+        'Stock Aging Reports',
+        'Dispatch Efficiency Tracking',
+        'Inventory Movement Analytics',
+        'Dedicated Account Management',
+        'Scalable Operations'
       ],
       process: [
         { step: '1', title: 'Consultation', description: 'Understand your needs' },
