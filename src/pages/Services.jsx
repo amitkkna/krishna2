@@ -70,7 +70,7 @@ const Services = () => {
         'Damaged Goods Handling'
       ],
       color: 'from-orange-500 to-orange-700',
-      image: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=800&q=80'
+      image: '/images/services/order-fulfillment.jpg'
     },
     {
       id: 'supply-chain-management',
@@ -133,6 +133,7 @@ const Services = () => {
       features: [
         'Risk Assessment & Analysis',
         'Insurance Coordination',
+        'Transit Insurance',
         'Cargo Security Solutions',
         'Business Continuity Planning',
         'Vendor Risk Evaluation',

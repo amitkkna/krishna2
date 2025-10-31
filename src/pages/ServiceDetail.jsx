@@ -129,7 +129,7 @@ const ServiceDetail = () => {
       title: 'Order Fulfillment & Operations',
       subtitle: 'Precision order processing with complete compliance',
       description: 'Our order fulfillment services handle the complete cycle from order receipt to delivery with accuracy, quality control, and full regulatory compliance. We ensure timely processing and proper documentation for every shipment.',
-      image: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=1200&q=80',
+      image: '/images/services/order-fulfillment.jpg',
       features: [
         {
           title: 'Timely Order Processing',
@@ -361,6 +361,10 @@ const ServiceDetail = () => {
           description: 'Comprehensive cargo and liability coverage'
         },
         {
+          title: 'Transit Insurance',
+          description: 'Complete protection for goods in transit'
+        },
+        {
           title: 'Cargo Security Solutions',
           description: 'Advanced security measures and monitoring'
         },
@@ -382,6 +386,7 @@ const ServiceDetail = () => {
         'Enhanced security',
         'Business continuity',
         'Cost protection',
+        'Transit insurance coverage',
         'Regulatory compliance',
         'Peace of mind'
       ],
