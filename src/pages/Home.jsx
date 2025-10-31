@@ -137,6 +137,7 @@ const Home = () => {
     { icon: <FaCheckCircle />, text: 'Trained & Professional Drivers' }
   ];
 
+  // Client testimonials (Industrial clients)
   const testimonials = [
     {
       name: 'Nikhilesh Sharma',
@@ -157,6 +158,31 @@ const Home = () => {
       position: 'RCM',
       company: 'Shalimar Paints',
       content: 'A reliable partner for our growing business. Their warehousing solutions and consulting services have been invaluable.',
+      rating: 5
+    }
+  ];
+
+  // Customer testimonials (Agricultural customers)
+  const customerTestimonials = [
+    {
+      name: 'Rahul Ratre',
+      position: 'Bilaspur',
+      company: 'Ratre Krishi Kendra - Bilha',
+      content: 'Excellent logistics support for our agricultural business. Krishna Care has consistently delivered on time with professional service.',
+      rating: 5
+    },
+    {
+      name: 'Sudhir Tiwary',
+      position: 'Mahasamund',
+      company: 'Suvidha Krishi Kendra - Tumgagon',
+      content: 'Their warehousing and distribution services have been instrumental in expanding our reach. Highly recommended for agricultural logistics.',
+      rating: 5
+    },
+    {
+      name: 'Manish Gupta',
+      position: 'Kawardha',
+      company: 'Sai Krishi Seva Kendra - Pandatarai',
+      content: 'Professional and reliable logistics partner. Their expertise in handling agricultural products has helped our business grow significantly.',
       rating: 5
     }
   ];
@@ -396,7 +422,7 @@ const Home = () => {
               </h2>
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p>
-                  We are a leading C&F (Carrying & Forwarding) agency and logistics solutions provider, 
+                  We are a leading C&F (Clearing & Forwarding) agency and logistics solutions provider, 
                   offering comprehensive services across the supply chain. With over 25 years of experience 
                   in the industry, Krishna Care has established itself as a trusted partner for businesses 
                   across Chhattisgarh and beyond.
@@ -739,7 +765,7 @@ const Home = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
+            {customerTestimonials.map((testimonial, index) => (
               <motion.div
                 key={`customer-${index}`}
                 initial={{ opacity: 0, y: 20 }}

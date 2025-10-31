@@ -195,68 +195,75 @@ const Portfolio = () => {
         </div>
 
         {/* Infinite Scroll Logo Container */}
-        <div className="relative">
+        <div className="relative overflow-hidden">
           {/* Gradient Overlays */}
           <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-slate-100 via-gray-100 to-transparent z-10"></div>
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-slate-100 via-gray-100 to-transparent z-10"></div>
 
-          {/* Scrolling Logos */}
-          <div className="flex animate-scroll">
+          {/* Scrolling Logos - Two identical sets for seamless loop */}
+          <div className="flex animate-scroll gap-16">
             {/* First Set of Logos */}
-            <div className="flex items-center space-x-10 px-6">
-              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
-                <img src="/images/logos/rallies.png" alt="Tata Rallis India Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
-              </div>
-              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
-                <img src="/images/logos/godrej.png" alt="Godrej Agrovet Limited" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
-              </div>
-              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
-                <img src="/images/logos/ghadra.png" alt="Gharda Chemicals Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
-              </div>
-              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
-                <img src="/images/logos/swal.png" alt="Swal Corporation Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
-              </div>
-              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
-                <img src="/images/logos/coromondal.png" alt="Coromandel International Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
-              </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/rallies.png" alt="Tata Rallis India Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+            </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/godrej.png" alt="Godrej Agrovet Limited" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+            </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/gharda.png" alt="Gharda Chemicals Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+            </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/coromondal.png" alt="Coromandel International Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+            </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/atul.png" alt="Atul Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+            </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/fmc.png" alt="FMC India Pvt Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+            </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/chambal.png" alt="Chambal Fertilisers" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+            </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/finolex.png" alt="Finolex Cables" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+            </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/hindalco.png" alt="Hindalco Industries" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+            </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/wipro.png" alt="Wipro Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
             </div>
 
             {/* Duplicate Set for Seamless Loop */}
-            <div className="flex items-center space-x-10 px-6">
-              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
-                <img src="/images/logos/rallies.png" alt="Tata Rallis India Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
-              </div>
-              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
-                <img src="/images/logos/godrej.png" alt="Godrej Agrovet Limited" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
-              </div>
-              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
-                <img src="/images/logos/ghadra.png" alt="Gharda Chemicals Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
-              </div>
-              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
-                <img src="/images/logos/swal.png" alt="Swal Corporation Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
-              </div>
-              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
-                <img src="/images/logos/coromondal.png" alt="Coromandel International Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
-              </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/rallies.png" alt="Tata Rallis India Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
             </div>
-
-            {/* Third Set for Extra Smoothness */}
-            <div className="flex items-center space-x-10 px-6">
-              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
-                <img src="/images/logos/rallies.png" alt="Tata Rallis India Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
-              </div>
-              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
-                <img src="/images/logos/godrej.png" alt="Godrej Agrovet Limited" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
-              </div>
-              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
-                <img src="/images/logos/ghadra.png" alt="Gharda Chemicals Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
-              </div>
-              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
-                <img src="/images/logos/swal.png" alt="Swal Corporation Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
-              </div>
-              <div className="flex-shrink-0 w-44 h-28 flex items-center justify-center p-4 hover:scale-110 transition-transform duration-300">
-                <img src="/images/logos/coromondal.png" alt="Coromandel International Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
-              </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/godrej.png" alt="Godrej Agrovet Limited" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+            </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/gharda.png" alt="Gharda Chemicals Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+            </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/coromondal.png" alt="Coromandel International Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+            </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/atul.png" alt="Atul Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+            </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/fmc.png" alt="FMC India Pvt Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+            </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/chambal.png" alt="Chambal Fertilisers" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+            </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/finolex.png" alt="Finolex Cables" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+            </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/hindalco.png" alt="Hindalco Industries" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
+            </div>
+            <div className="flex-shrink-0 w-64 h-40 flex items-center justify-center p-6 hover:scale-110 transition-transform duration-300">
+              <img src="/images/logos/wipro.png" alt="Wipro Ltd" className="max-w-full max-h-full object-contain filter drop-shadow-2xl" />
             </div>
           </div>
         </div>
@@ -268,12 +275,12 @@ const Portfolio = () => {
               transform: translateX(0);
             }
             100% {
-              transform: translateX(-50%);
+              transform: translateX(calc(-280px * 10 - 64px * 10));
             }
           }
 
           .animate-scroll {
-            animation: scroll 30s linear infinite;
+            animation: scroll 25s linear infinite;
           }
 
           .animate-scroll:hover {

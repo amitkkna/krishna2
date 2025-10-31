@@ -308,14 +308,14 @@ const Gallery = () => {
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
           aria-label="Previous slide"
         >
           <FaChevronLeft size={24} />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
           aria-label="Next slide"
         >
           <FaChevronRight size={24} />
@@ -340,7 +340,7 @@ const Gallery = () => {
         {/* Auto-play Toggle */}
         <button
           onClick={() => setIsAutoPlay(!isAutoPlay)}
-          className="absolute bottom-8 right-8 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300"
+          className="absolute bottom-8 right-8 z-20 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full transition-all duration-300"
           aria-label={isAutoPlay ? 'Pause autoplay' : 'Play autoplay'}
         >
           {isAutoPlay ? <FaPause size={16} /> : <FaPlay size={16} />}
