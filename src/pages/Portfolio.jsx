@@ -143,7 +143,7 @@ const Portfolio = () => {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="text-lg md:text-xl text-gray-100 max-w-5xl mx-auto leading-relaxed font-light px-4"
             >
-              Krishna Care serves as the official Carrying and Forwarding (C&F) Agent for the entire state of <span className="font-semibold text-yellow-400">Chhattisgarh</span>,
+              Krishna Care serves as the official Carrying and Forwarding (C&F) Agency for the entire state of <span className="font-semibold text-yellow-400">Chhattisgarh</span>,
               managing <span className="font-semibold text-yellow-400">logistics and distribution</span> for a diverse portfolio of leading companies. For smooth and efficient
               functioning, operations are organized into <span className="font-semibold text-yellow-400">specialized divisions</span>.
             </motion.p>
