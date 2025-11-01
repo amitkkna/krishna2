@@ -1,4 +1,4 @@
-import { FaUsers, FaTrophy, FaHeart, FaRocket, FaLinkedinIn, FaBuilding } from 'react-icons/fa';
+import { FaUsers, FaTrophy, FaHeart, FaRocket, FaBuilding } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const About = () => {
@@ -37,29 +37,25 @@ const About = () => {
       name: 'Rajesh Kumar',
       position: 'CEO & Founder',
       image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400',
-      bio: '20+ years in logistics and supply chain management',
-      linkedin: '#'
+      bio: '20+ years in logistics and supply chain management'
     },
     {
       name: 'Priya Sharma',
       position: 'COO',
       image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400',
-      bio: 'Expert in operational excellence and process optimization',
-      linkedin: '#'
+      bio: 'Expert in operational excellence and process optimization'
     },
     {
       name: 'Amit Patel',
       position: 'CTO',
       image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400',
-      bio: 'Technology innovator with focus on AI and IoT',
-      linkedin: '#'
+      bio: 'Technology innovator with focus on AI and IoT'
     },
     {
       name: 'Sneha Reddy',
       position: 'VP Sales',
       image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400',
-      bio: 'Building strong client relationships for 15 years',
-      linkedin: '#'
+      bio: 'Building strong client relationships for 15 years'
     }
   ];
 
@@ -587,14 +583,7 @@ const About = () => {
                 <div className="p-6 text-center">
                   <h3 className="text-xl font-semibold text-gray-900 mb-1">{member.name}</h3>
                   <p className="text-primary-600 font-medium mb-3">{member.position}</p>
-                  <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
-                  <a 
-                    href={member.linkedin} 
-                    className="inline-flex items-center justify-center w-10 h-10 bg-primary-600 text-white rounded-full hover:bg-primary-700 transition-colors"
-                    aria-label="LinkedIn"
-                  >
-                    <FaLinkedinIn />
-                  </a>
+                  <p className="text-gray-600 text-sm">{member.bio}</p>
                 </div>
               </motion.div>
             ))}
