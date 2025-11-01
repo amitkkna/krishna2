@@ -1,4 +1,4 @@
-import { FaUsers, FaTrophy, FaHeart, FaRocket, FaBuilding } from 'react-icons/fa';
+import { FaUsers, FaRocket, FaBuilding } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const About = () => {
@@ -7,29 +7,6 @@ const About = () => {
     { number: '500+', label: 'Active Clients' },
     { number: '50K+', label: 'Monthly Deliveries' },
     { number: '200+', label: 'Team Members' },
-  ];
-
-  const values = [
-    {
-      icon: <FaTrophy size={40} />,
-      title: 'Excellence',
-      description: 'We strive for excellence in every aspect of our operations, continuously improving our services.'
-    },
-    {
-      icon: <FaHeart size={40} />,
-      title: 'Customer First',
-      description: 'Our clients\' success is our success. We go above and beyond to meet their needs.'
-    },
-    {
-      icon: <FaRocket size={40} />,
-      title: 'Innovation',
-      description: 'We embrace technology and innovation to stay ahead in the logistics industry.'
-    },
-    {
-      icon: <FaUsers size={40} />,
-      title: 'Teamwork',
-      description: 'Collaboration and respect form the foundation of our workplace culture.'
-    }
   ];
 
   const team = [
@@ -209,7 +186,7 @@ const About = () => {
               {/* Left Side - Image */}
               <div className="relative h-[350px] lg:h-auto">
                 <img
-                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80"
+                  src="/images/about/aboutus-boardroom.jpeg"
                   alt="Krishna Care Team Collaboration"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
@@ -287,8 +264,8 @@ const About = () => {
               <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
                 {/* Image */}
                 <div className="h-56 overflow-hidden relative">
-                  <img 
-                    src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&h=400&fit=crop" 
+                  <img
+                    src="/images/about/aboutus-discussion.jpeg"
                     alt="Vision"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -318,8 +295,8 @@ const About = () => {
               <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
                 {/* Image */}
                 <div className="h-56 overflow-hidden relative">
-                  <img 
-                    src="https://images.unsplash.com/photo-1530099486328-e021101a494a?w=600&h=400&fit=crop" 
+                  <img
+                    src="/images/about/aboutus-team.jpeg"
                     alt="Mission"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -349,8 +326,8 @@ const About = () => {
               <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
                 {/* Image */}
                 <div className="h-56 overflow-hidden relative">
-                  <img 
-                    src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&h=400&fit=crop" 
+                  <img
+                    src="/images/about/aboutus-working.jpeg"
                     alt="Values & Belief"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
