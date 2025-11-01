@@ -140,7 +140,7 @@ const Services = () => {
         'Compliance & Regulatory Risk'
       ],
       color: 'from-red-500 to-red-700',
-      image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800'
+      image: '/images/services/services-risk-management.jpeg'
     }
   ];
 

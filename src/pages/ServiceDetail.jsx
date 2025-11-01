@@ -350,7 +350,7 @@ const ServiceDetail = () => {
       title: 'Risk Management',
       subtitle: 'Comprehensive supply chain risk mitigation',
       description: 'Our risk management services identify, assess, and mitigate potential threats to your supply chain. We develop strategies to protect your operations from disruptions and ensure business continuity.',
-      image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200',
+      image: '/images/services/services-risk-management.jpeg',
       features: [
         {
           title: 'Risk Assessment & Analysis',
