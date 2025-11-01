@@ -46,7 +46,7 @@ const Home = () => {
       description: t(homeTranslations.services.warehousing.description),
       link: '/services/warehousing',
       color: 'from-green-500 to-green-600',
-      image: '/images/home/warehousing-solution.jpeg'
+      image: '/images/home/warehousing-solution.jpg'
     },
     {
       icon: <FaTruck size={40} />,
@@ -120,9 +120,10 @@ const Home = () => {
     { icon: <FaUserShield />, text: '24 Hours Security Guards' },
     { icon: <FaDoorOpen />, text: 'Proper In and Out Gates' },
     { icon: <FaFileAlt />, text: 'POD at Same Day of Delivery' },
-    { icon: <FaBell />, text: 'Fire Alarm System' },
+    { icon: <FaBell />, text: 'Advanced Fire Alarm System (Manual & Auto)' },
     { icon: <FaClipboardList />, text: 'Daily Stock Take' },
-    { icon: <FaIdCard />, text: 'Bin Cards Maintenance' }
+    { icon: <FaCheckCircle />, text: 'Uninterrupted Power Supply (60kV Genset)' },
+    { icon: <FaShieldAlt />, text: 'Tamper-Proof Locking Protocol (Seal & Signature)' }
   ];
 
   const logisticsExcellence = [
@@ -134,7 +135,8 @@ const Home = () => {
     { icon: <FaAward />, text: 'Industry-leading Technology' },
     { icon: <FaShieldAlt />, text: 'Cargo Insurance Coverage' },
     { icon: <FaChartLine />, text: 'Route Optimization System' },
-    { icon: <FaCheckCircle />, text: 'Trained & Professional Drivers' }
+    { icon: <FaCheckCircle />, text: 'Trained & Professional Drivers' },
+    { icon: <FaUserShield />, text: 'Dedicated Account Management' }
   ];
 
   // Client testimonials (Industrial clients)
@@ -216,14 +218,14 @@ const Home = () => {
     },
     {
       type: 'video',
-      url: '/videos/krishnacare2.mp4',
+      url: '/videos/krishnacare2.mp4?v=2',
       title: 'Advanced Warehousing Facilities',
       subtitle: 'State-of-the-art storage solutions with 126,000+ sq/ft capacity and modern infrastructure',
       label: 'WAREHOUSING'
     },
     {
       type: 'image',
-      url: '/images/home/Integrated_logistics_solution.jpeg',
+      url: '/images/home/Integrated_logistics_solution.jpg',
       title: 'Integrated Logistics Solutions',
       subtitle: 'Nationwide distribution network with real-time tracking and on-time delivery guarantee',
       label: 'LOGISTICS'
@@ -421,7 +423,7 @@ const Home = () => {
               </h2>
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p>
-                  We are a leading C&F (Carrying & Forwarding) agency and logistics solutions provider, 
+                  We are a leading C&F (Carrying & Forwarding) Agent and logistics solutions provider, 
                   offering comprehensive services across the supply chain. With over 25 years of experience 
                   in the industry, Krishna Care has established itself as a trusted partner for businesses 
                   across Chhattisgarh and beyond.

@@ -511,7 +511,7 @@ const About = () => {
                       <div>
                         <h4 className="text-xl font-bold text-primary-900 mb-3">Deep Industry Expertise</h4>
                         <p className="text-gray-700 leading-relaxed mb-3">
-                          Dr. Agrawal brings to the organization a wealth of specialized experience in the Pharmaceutical, Agriculture, and Paints industries, particularly within Clearing and Forwarding Agency (CFA) operations. This hands-on expertise allows him to understand the unique logistical challenges and regulatory nuances of each sector.
+                          Dr. Agrawal brings to the organization a wealth of specialized experience in the Pharmaceutical, Agriculture, and Paints industries, particularly within Clearing and Forwarding Agent (CFA) operations. This hands-on expertise allows him to understand the unique logistical challenges and regulatory nuances of each sector.
                         </p>
                         <p className="text-gray-700 leading-relaxed">
                           This deep knowledge has enabled Krishna Care to offer highly tailored, efficient, and compliant solutions that meet the stringent demands of its diverse clientele. His sector-specific insights ensure that the company stays ahead of industry trends and regulatory requirements.

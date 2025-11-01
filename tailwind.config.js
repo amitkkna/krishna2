@@ -52,6 +52,7 @@ export default {
         'fade-in': 'fadeIn 0.6s ease-in',
         'slide-up': 'slideUp 0.6s ease-out',
         'slide-in': 'slideIn 0.6s ease-out',
+        'shine': 'shine 2s infinite',
       },
       keyframes: {
         fadeIn: {
@@ -65,6 +66,10 @@ export default {
         slideIn: {
           '0%': { transform: 'translateX(-20px)', opacity: '0' },
           '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+        shine: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
         },
       },
     },

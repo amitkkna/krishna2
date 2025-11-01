@@ -57,7 +57,10 @@ const Footer = () => {
               <div className="flex flex-col">
                 <h3 className="text-2xl font-bold text-white font-heading leading-tight">Krishna Care</h3>
                 <span className="text-sm font-semibold text-yellow-400 leading-tight">Asha Enterprises</span>
-                <span className="text-xs text-gray-400 leading-tight mt-0.5">Logistics & Supply Chain</span>
+                <span className="text-xs text-gray-400 leading-tight mt-0.5 relative inline-block overflow-hidden">
+                  <span className="relative z-10">CFA</span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30 animate-shine"></span>
+                </span>
               </div>
             </Link>
             <p className="text-sm text-gray-400 mb-6 leading-relaxed">

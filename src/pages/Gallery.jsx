@@ -20,23 +20,23 @@ const Gallery = () => {
 
   const categories = ['All', 'General', 'Operations', 'Warehouse', 'Fleet', 'Team', 'Events'];
   
-  // Hero slider items - images numbered 1-13 from public/images/gallery/
+  // Hero slider items - images numbered 1-11 from public/images/gallery/
   const heroSlides = [
     {
       type: 'image',
-      src: '/images/gallery/1.jpg',
+      src: '/images/gallery/1.png',
       title: 'Krishna Care Operations',
       description: 'Excellence in warehousing and logistics'
     },
     {
       type: 'image',
-      src: '/images/gallery/2.jpg',
+      src: '/images/gallery/2.png',
       title: 'Modern Warehouse Facilities',
       description: 'State-of-the-art storage solutions'
     },
     {
       type: 'image',
-      src: '/images/gallery/3.jpg',
+      src: '/images/gallery/3.png',
       title: 'Our Infrastructure',
       description: 'World-class logistics facilities'
     },
@@ -87,18 +87,6 @@ const Gallery = () => {
       src: '/images/gallery/11.jpg',
       title: 'Operations in Action',
       description: 'See how we deliver excellence'
-    },
-    {
-      type: 'image',
-      src: '/images/gallery/12.jpg',
-      title: 'Distribution Network',
-      description: 'Nationwide logistics coverage'
-    },
-    {
-      type: 'image',
-      src: '/images/gallery/13.jpg',
-      title: 'Professional Team',
-      description: 'Your trusted C&F partner'
     }
   ];
 
