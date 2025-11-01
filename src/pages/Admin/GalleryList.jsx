@@ -35,7 +35,6 @@ const GalleryList = () => {
     try {
       setLoading(true);
       const response = await galleryService.getFolders(filters);
-      console.log('Folders API Response:', response);
       setFolders(response.data || []);
     } catch (error) {
       console.error('Failed to fetch folders:', error);
@@ -49,7 +48,6 @@ const GalleryList = () => {
     try {
       setLoading(true);
       const response = await galleryService.getByFolder(folderName);
-      console.log('Folder Images API Response:', response);
       setImages(response.data || []);
     } catch (error) {
       console.error('Failed to fetch folder images:', error);

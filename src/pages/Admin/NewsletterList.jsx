@@ -20,7 +20,6 @@ const NewsletterList = () => {
         params.status = filter;
       }
       const response = await newsletterService.getAll(params);
-      console.log('Newsletter API Response:', response);
       setSubscribers(response.data || []);
     } catch (error) {
       console.error('Failed to fetch subscribers:', error);
