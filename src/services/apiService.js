@@ -1,4 +1,15 @@
 import api from './api';
+import axios from 'axios';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
+// Create a public API instance without auth interceptors
+const publicApi = axios.create({
+  baseURL: API_URL,
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
 
 export const authService = {
   login: async (email, password) => {
@@ -31,7 +42,14 @@ export const authService = {
 };
 
 export const blogService = {
+  // Public method - fetches only published blogs (no auth token)
   getAll: async (params = {}) => {
+    const response = await publicApi.get('/blogs', { params });
+    return response.data;
+  },
+
+  // Admin method - fetches all blogs (with auth token)
+  getAllAdmin: async (params = {}) => {
     const response = await api.get('/blogs', { params });
     return response.data;
   },

@@ -58,7 +58,7 @@ const BlogPost = () => {
   const displayExcerpt = post.excerpt?.[language] || post.excerpt?.en || post.excerpt;
   const imageUrl = post.featuredImage
     ? `${import.meta.env.VITE_API_URL.replace('/api', '')}${post.featuredImage}`
-    : 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200';
+    : '/images/blog/blog_backup.jpg';
 
   return (
     <div className="min-h-screen bg-white">
@@ -69,7 +69,7 @@ const BlogPost = () => {
           alt={displayTitle}
           className="w-full h-full object-cover opacity-70"
           onError={(e) => {
-            e.target.src = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200';
+            e.target.src = '/images/blog/blog_backup.jpg';
           }}
         />
       </div>

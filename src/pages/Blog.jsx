@@ -223,11 +223,11 @@ const Blog = () => {
                   <Link to={`/blog/${post.slug || post._id}`}>
                     <div className="overflow-hidden">
                       <img
-                        src={post.featuredImage ? `${import.meta.env.VITE_API_URL.replace('/api', '')}${post.featuredImage}` : 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800'}
+                        src={post.featuredImage ? `${import.meta.env.VITE_API_URL.replace('/api', '')}${post.featuredImage}` : '/images/blog/blog_backup.jpg'}
                         alt={post.title?.[language] || post.title?.en || post.title}
                         className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                         onError={(e) => {
-                          e.target.src = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800';
+                          e.target.src = '/images/blog/blog_backup.jpg';
                         }}
                       />
                     </div>
