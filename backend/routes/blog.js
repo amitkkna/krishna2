@@ -14,15 +14,10 @@ router.get('/', optionalAuth, async (req, res) => {
 
     let query = {};
 
-    // Debug logging
-    console.log('GET /api/blogs - User:', req.user ? `${req.user.email} (${req.user.role})` : 'Not authenticated');
-
     // Non-admin users only see published blogs
     if (!req.user || req.user.role !== 'admin') {
       query.isPublished = true;
-      console.log('Filtering for published blogs only');
     } else {
-      console.log('Admin user - showing all blogs');
     }
     
     // Filter by category
