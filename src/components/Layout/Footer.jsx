@@ -139,6 +139,11 @@ const Footer = () => {
                   Blogs
                 </Link>
               </li>
+              <li>
+                <Link to="/sop" className="text-sm hover:text-primary-400 transition-colors inline-block">
+                  SOP
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -26,7 +26,7 @@ const Assets = () => {
 
   const facilities = [
     {
-      title: 'KRISHNA CARE (Gondwara) - Head Office & Primary Logistics Hub',
+      title: 'KRISHNA CARE (Asha Enterprises) C&F Gondwara - Head Office & Primary Logistics Hub',
       icon: <FaBuilding className="w-12 h-12" />,
       color: 'from-blue-600 to-blue-800',
       image: '/images/assets/head-office.png',
@@ -47,7 +47,7 @@ const Assets = () => {
       ]
     },
     {
-      title: 'KRISHNA CARE (Gondwara) - New Logistics Complex',
+      title: 'KRISHNA CARE (Asha Enterprises) C&F Gondwara - New Logistics Complex',
       icon: <FaWarehouse className="w-12 h-12" />,
       color: 'from-green-600 to-green-800',
       image: '/images/assets/new-complex.png',

@@ -24,8 +24,8 @@ export const footerTranslations = {
       hi: "संपर्क जानकारी"
     },
     address: {
-      en: "Gondwara, Raipur, Chhattisgarh 492015, India",
-      hi: "गोंदवारा, रायपुर, छत्तीसगढ़ 492015, भारत"
+      en: "Ring Road No. 2, Gondwara, Raipur, Chhattisgarh 492015, India",
+      hi: "रिंग रोड नंबर 2, गोंदवारा, रायपुर, छत्तीसगढ़ 492015, भारत"
     },
     phone: {
       en: "+91 771 4081000",
@@ -36,8 +36,8 @@ export const footerTranslations = {
       hi: "krishnacare.cfa@gmail.com"
     },
     hours: {
-      en: "Mon - Sat: 9:00 AM - 6:00 PM",
-      hi: "सोम - शनि: सुबह 9:00 - शाम 6:00"
+      en: "Mon - Sat: 10:00 AM - 7:00 PM",
+      hi: "सोम - शनि: सुबह 10:00 - शाम 7:00"
     }
   },
   
