@@ -118,7 +118,6 @@ const Gallery = () => {
         params.category = selectedCategory;
       }
       const response = await axios.get(`${import.meta.env.VITE_API_URL}/gallery/folders`, { params });
-      console.log('Gallery Folders API Response:', response.data);
       setFolders(response.data.data || []);
     } catch (error) {
       console.error('Error fetching gallery folders:', error);
@@ -132,7 +131,6 @@ const Gallery = () => {
     try {
       setLoading(true);
       const response = await axios.get(`${import.meta.env.VITE_API_URL}/gallery/folder/${folderName}`);
-      console.log('Folder Images API Response:', response.data);
       setImages(response.data.data || []);
       setFilteredImages(response.data.data || []);
     } catch (error) {

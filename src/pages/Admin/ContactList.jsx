@@ -17,7 +17,6 @@ const ContactList = () => {
     try {
       setLoading(true);
       const response = await contactService.getAll(filters);
-      console.log('Contact API Response:', response);
       
       // Handle the response structure from backend
       setContacts(response.data || []);

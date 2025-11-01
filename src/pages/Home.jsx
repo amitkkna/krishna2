@@ -193,7 +193,6 @@ const Home = () => {
       try {
         // Backend automatically filters for published blogs for non-admin users
         const response = await blogService.getAll({ page: 1, limit: 3 });
-        console.log('Home - Fetched blogs:', response);
         const blogs = response.data || [];
         setRecentBlogs(blogs);
       } catch (error) {

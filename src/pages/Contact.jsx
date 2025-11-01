@@ -31,7 +31,6 @@ const Contact = () => {
     try {
       setLoading(true);
       const response = await contactService.submit(formData);
-      console.log('Contact form response:', response);
       
       if (response.success) {
         toast.success(response.message || t(contactTranslations.success.message));

@@ -35,18 +35,15 @@ const Dashboard = () => {
       
       // Fetch blogs with correct response structure (admin sees all blogs)
       const blogsData = await blogService.getAllAdmin({ page: 1, limit: 5 });
-      console.log('Dashboard - Blogs Data:', blogsData);
       const blogsList = blogsData.data || [];
       const publishedCount = blogsList.filter(b => b.isPublished).length || 0;
       setRecentBlogs(blogsList.slice(0, 5) || []);
       
       // Fetch gallery with correct response structure
       const galleryData = await galleryService.getAll();
-      console.log('Dashboard - Gallery Data:', galleryData);
       
       // Fetch contacts with correct response structure
       const contactsData = await contactService.getAll({ page: 1, limit: 5 });
-      console.log('Dashboard - Contacts Data:', contactsData);
       const contactsList = contactsData.data || [];
       const newContactsCount = contactsList.filter(c => c.status === 'new').length || 0;
       setRecentContacts(contactsList.slice(0, 5) || []);

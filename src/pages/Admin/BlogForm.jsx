@@ -35,7 +35,6 @@ const BlogForm = () => {
     try {
       setFetchingBlog(true);
       const response = await blogService.getOne(id);
-      console.log('Fetched blog response:', response);
 
       // Handle the response structure from backend
       const blog = response.data || response;

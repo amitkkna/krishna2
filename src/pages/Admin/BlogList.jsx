@@ -22,7 +22,6 @@ const BlogList = () => {
     try {
       setLoading(true);
       const response = await blogService.getAllAdmin(filters);
-      console.log('Blog API Response:', response);
       
       // Handle the response structure from backend
       setBlogs(response.data || []);

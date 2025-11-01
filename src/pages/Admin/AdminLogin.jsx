@@ -41,9 +41,7 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      console.log('Attempting login with:', formData.email);
       const result = await authService.login(formData.email, formData.password);
-      console.log('Login result:', result);
       
       if (result.success) {
         // Save credentials if Remember Me is checked
@@ -73,9 +71,7 @@ const AdminLogin = () => {
   const handleQuickLogin = async () => {
     setLoading(true);
     try {
-      console.log('Attempting quick login...');
       const result = await authService.login('admin@krishnacare.com', 'Admin@123');
-      console.log('Quick login result:', result);
       
       if (result.success) {
         toast.success('Quick login successful!');
