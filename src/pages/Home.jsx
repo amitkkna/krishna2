@@ -46,7 +46,7 @@ const Home = () => {
       description: t(homeTranslations.services.warehousing.description),
       link: '/services/warehousing',
       color: 'from-green-500 to-green-600',
-      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=400&h=300&fit=crop'
+      image: '/images/home/warehousing-solution.jpeg'
     },
     {
       icon: <FaTruck size={40} />,
@@ -54,7 +54,7 @@ const Home = () => {
       description: t(homeTranslations.services.transportation.description),
       link: '/services/transportation',
       color: 'from-blue-500 to-blue-600',
-      image: 'https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=400&h=300&fit=crop'
+      image: '/images/home/primary-transportation.jpeg'
     },
     {
       icon: <FaChartLine size={40} />,
@@ -62,7 +62,7 @@ const Home = () => {
       description: t(homeTranslations.services.supplyChain.description),
       link: '/services/supply-chain-management',
       color: 'from-purple-500 to-purple-600',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop'
+      image: '/images/home/supplychain-management.jpeg'
     },
     {
       icon: <FaShieldAlt size={40} />,
@@ -70,7 +70,7 @@ const Home = () => {
       description: t(homeTranslations.services.customs.description),
       link: '/services/customs-clearance',
       color: 'from-indigo-500 to-indigo-600',
-      image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=400&h=300&fit=crop'
+      image: '/images/home/custom-clearance.jpeg'
     },
     {
       icon: <FaCogs size={40} />,
@@ -78,7 +78,7 @@ const Home = () => {
       description: t(homeTranslations.services.integrated.description),
       link: '/services/integrated-solutions',
       color: 'from-orange-500 to-orange-600',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=300&fit=crop'
+      image: '/images/home/integrated_solutions.jpeg'
     },
     {
       icon: <FaShieldAlt size={40} />,
@@ -86,7 +86,7 @@ const Home = () => {
       description: t(homeTranslations.services.risk.description),
       link: '/services/risk-management',
       color: 'from-red-500 to-red-600',
-      image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=300&fit=crop'
+      image: '/images/home/risk-management.jpeg'
     }
   ];
 
@@ -224,14 +224,14 @@ const Home = () => {
     },
     {
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=1920&h=800&fit=crop&q=80',
+      url: '/images/home/Integrated_logistics_solution.jpeg',
       title: 'Integrated Logistics Solutions',
       subtitle: 'Nationwide distribution network with real-time tracking and on-time delivery guarantee',
       label: 'LOGISTICS'
     },
     {
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1920&h=800&fit=crop&q=80',
+      url: '/images/home/End-to-endSCM.jpeg',
       title: 'End-to-End Supply Chain Management',
       subtitle: 'From storage to delivery - complete logistics solutions tailored to your business needs',
       label: 'SOLUTIONS'
