@@ -476,7 +476,7 @@ const Home = () => {
                   
                   <div className="relative z-10">
                     <div className="text-sm font-semibold text-white mb-3">Trusted Partners</div>
-                    <div className="text-5xl font-bold text-white mb-3">30+</div>
+                    <div className="text-5xl font-bold text-white mb-3">35+</div>
                     <div className="text-sm text-white font-semibold">Premium Brands</div>
                   </div>
                 </motion.div>
@@ -497,7 +497,7 @@ const Home = () => {
                   <div className="relative z-10">
                     <div className="text-sm font-semibold text-white mb-3">Full Coverage</div>
                     <div className="text-5xl font-bold text-white mb-3">100%</div>
-                    <div className="text-sm text-white font-semibold">Chhattisgarh<br/>State</div>
+                    <div className="text-sm text-white font-semibold">Chhattisgarh<br/>& MP State</div>
                   </div>
                 </motion.div>
               </div>

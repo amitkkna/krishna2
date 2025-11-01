@@ -21,7 +21,7 @@ const Portfolio = () => {
       ]
     },
     {
-      title: 'Pesticides & Fertilizer Division',
+      title: 'Seeds, Pesticides & Fertilizer Division',
       icon: <FaSeedling className="w-8 h-8" />,
       gradient: 'from-green-500 to-green-700',
       companies: [
@@ -309,9 +309,6 @@ const Portfolio = () => {
                   </div>
                   <div>
                     <h2 className="text-3xl font-bold font-heading">{division.title}</h2>
-                    <p className="text-white/90 mt-1">
-                      {division.companies.length} Partner{division.companies.length !== 1 ? 's' : ''}
-                    </p>
                   </div>
                 </div>
               </div>
@@ -404,7 +401,7 @@ const Portfolio = () => {
               className="text-center"
             >
               <div className="text-4xl font-bold mb-2">100%</div>
-              <div className="text-primary-200">Chhattisgarh Coverage</div>
+              <div className="text-primary-200">Chhattisgarh & MP Coverage</div>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -438,7 +435,7 @@ const Portfolio = () => {
               Our Experience: Previous Company Portfolio
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              With over <span className="text-primary-600 font-bold">20 years of operational experience</span> in CFA and distribution, 
+              With over <span className="text-primary-600 font-bold">25 years of operational experience</span> in CFA and distribution, 
               our organization has a proven track record of successful partnerships. Below is a list of esteemed companies 
               we have had the privilege to work with:
             </p>
@@ -663,7 +660,7 @@ const Portfolio = () => {
           >
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div>
-                <div className="text-5xl font-bold mb-2">20+</div>
+                <div className="text-5xl font-bold mb-2">25+</div>
                 <div className="text-amber-100">Years of Experience</div>
               </div>
               <div>

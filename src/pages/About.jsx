@@ -1,7 +1,9 @@
 import { FaUsers, FaRocket, FaBuilding } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 const About = () => {
+  const [activeLeaderTab, setActiveLeaderTab] = useState('krishna');
   const stats = [
     { number: '25+', label: 'Years of Experience' },
     { number: '500+', label: 'Active Clients' },
@@ -128,7 +130,7 @@ const About = () => {
 
             {/* Main Heading */}
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              About <span className="text-yellow-400">Krishna Care</span>
+              <span className="text-yellow-400">Krishna Care</span> <span className="text-gray-300 text-3xl md:text-4xl align-middle">(Asha Enterprises)</span>
             </h1>
 
             {/* Subtitle with underline */}
@@ -140,7 +142,7 @@ const About = () => {
 
             {/* Description */}
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
-              With <span className="text-yellow-400 font-semibold">25+ years of experience</span>, Krishna Care has established itself as a{' '}
+              With <span className="text-yellow-400 font-semibold">25+ years of experience</span>, Krishna Care (Asha Enterprises) has established itself as a{' '}
               <span className="text-yellow-400 font-semibold">trusted leader</span> in warehousing, logistics and supply chain solutions.
               We combine <span className="text-yellow-400 font-semibold">cutting-edge technology</span>, <span className="text-yellow-400 font-semibold">innovation</span>,
               and unwavering commitment to deliver <span className="text-yellow-400 font-semibold">total service satisfaction</span> to our valued clients.
@@ -364,171 +366,181 @@ const About = () => {
             </motion.div>
           </div>
 
-          {/* Side by Side Grid - Equal Heights */}
-          <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto items-stretch">
-            {/* Chairman */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="group"
-            >
-              <div className="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 h-full flex flex-col">
-                {/* Photo */}
-                <div className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
-                  <div className="h-[500px] relative">
-                    <img
-                      src="/images/leadership/chairman.png"
-                      alt="Mr. Krishna Kumar Agrawal - Chairman"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      onError={(e) => {
-                        if (e.target.src.includes('.png')) {
-                          e.target.src = '/images/leadership/chairman.jpg';
-                        } else {
-                          e.target.style.display = 'none';
-                          e.target.nextElementSibling.style.display = 'flex';
-                        }
-                      }}
-                    />
-                    <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-primary-900/30 to-transparent flex items-center justify-center" style={{display: 'none'}}>
-                      <FaUsers size={80} className="text-white" />
-                    </div>
-                    {/* Overlay gradient - only at bottom */}
-                    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/60 to-transparent"></div>
+          {/* Tab Navigation */}
+          <div className="flex justify-center mb-8">
+            <div className="inline-flex rounded-lg bg-gray-100 p-1">
+              <button
+                onClick={() => setActiveLeaderTab('krishna')}
+                className={`px-8 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                  activeLeaderTab === 'krishna'
+                    ? 'bg-white text-primary-600 shadow-md'
+                    : 'text-gray-600 hover:text-primary-600'
+                }`}
+              >
+                Mr. Krishna Kumar Agrawal
+              </button>
+              <button
+                onClick={() => setActiveLeaderTab('manoj')}
+                className={`px-8 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                  activeLeaderTab === 'manoj'
+                    ? 'bg-white text-primary-600 shadow-md'
+                    : 'text-gray-600 hover:text-primary-600'
+                }`}
+              >
+                Dr. Manoj Kumar Agrawal
+              </button>
+            </div>
+          </div>
 
-                    {/* Name overlay on image */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
-                      <h3 className="text-3xl font-bold mb-1">Mr. Krishna Kumar Agrawal</h3>
-                      <p className="text-lg font-semibold text-yellow-400">Chairman & Founder</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-8 flex-1 flex flex-col">
-                  <div className="space-y-4 flex-1">
-                    <p className="text-gray-700 leading-relaxed">
-                      Mr. Krishna Kumar Agrawal is the esteemed Chairman and Founder of the Krishna Care group. As a foundational pillar of the organization, his leadership and vision have been the primary architects of the company's enduring success and sterling reputation in the logistics and C&F industry. With a career spanning over two decades, he has cultivated a business ethos centered on an unwavering commitment to excellence and stakeholder satisfaction.
-                    </p>
-
-                    <div>
-                      <h4 className="text-xl font-bold text-primary-900 mb-3">Core Philosophy: The Pursuit of Total Service Satisfaction</h4>
-                      <p className="text-gray-700 leading-relaxed mb-3">
-                        At the heart of Mr. Agrawal's business philosophy is the principle of total service satisfaction. He views this not merely as a goal but as the absolute cornerstone of the company's quality service framework. This commitment goes beyond simply meeting contractual obligations; it is a proactive and dynamic process.
-                      </p>
-                      <ul className="space-y-2 ml-4">
-                        <li className="text-gray-700 leading-relaxed flex items-start">
-                          <span className="text-primary-600 mr-2 mt-1">•</span>
-                          <span><strong>Anticipating Client Needs:</strong> He has instilled a culture of proactively identifying the evolving service-oriented needs of clients, often before they are explicitly stated.</span>
-                        </li>
-                        <li className="text-gray-700 leading-relaxed flex items-start">
-                          <span className="text-primary-600 mr-2 mt-1">•</span>
-                          <span><strong>Translating Needs into Quality:</strong> His leadership ensures that these identified needs are meticulously translated into tangible, high-quality service offerings that deliver measurable value and build long-term trust.</span>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xl font-bold text-primary-900 mb-3">Leadership Style: Empowering People for Collective Success</h4>
-                      <p className="text-gray-700 leading-relaxed">
-                        Mr. Agrawal firmly believes that the organization's most valuable asset is its people. He plans to achieve his strategic goals by leveraging the strength of the company's employees. This employee-centric approach is fundamental to the company's operational model. He recognizes that the organization's success is a direct result of the hard work and continuous involvement of its team.
-                      </p>
-                      <p className="text-gray-700 leading-relaxed mt-3">
-                        This leadership style has fostered a culture of ownership, responsibility, and mutual respect throughout the organization. By empowering his workforce, he ensures that every member of the Krishna Care team is aligned with and actively contributing to the overarching objective of achieving exceptional service quality.
-                      </p>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xl font-bold text-primary-900 mb-3">Legacy and Impact</h4>
-                      <p className="text-gray-700 leading-relaxed">
-                        Under Mr. Agrawal's guidance, Krishna Care has grown from a vision into a formidable enterprise with state-of-the-art infrastructure, a prestigious client portfolio, and a reputation for reliability. His foundational principles of prioritizing both customer satisfaction and employee empowerment remain the driving force behind the group's continued growth and market leadership. He has not just built a company; he has built a legacy of quality and integrity.
-                      </p>
+          {/* Tab Content */}
+          <div className="max-w-6xl mx-auto">
+            {/* Krishna Kumar Agrawal Tab */}
+            {activeLeaderTab === 'krishna' && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="group"
+              >
+                <div className="bg-white rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500">
+                  {/* Photo - Top Center (Circular) */}
+                  <div className="flex justify-center mb-6">
+                    <div className="w-48 h-48 rounded-full overflow-hidden bg-gradient-to-br from-yellow-400 to-orange-500 p-1 shadow-2xl group-hover:scale-105 transition-transform duration-500">
+                      <div className="w-full h-full rounded-full overflow-hidden bg-white p-2">
+                        <img
+                          src="/images/leadership/chairman.png"
+                          alt="Mr. Krishna Kumar Agrawal - Chairman"
+                          className="w-full h-full object-cover rounded-full"
+                          onError={(e) => {
+                            if (e.target.src.includes('.png')) {
+                              e.target.src = '/images/leadership/chairman.jpg';
+                            }
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </motion.div>
 
-            {/* Managing Director */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="group"
-            >
-              <div className="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 h-full flex flex-col">
-                {/* Photo */}
-                <div className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
-                  <div className="h-[500px] relative">
-                    <img
-                      src="/images/leadership/managing-director.png"
-                      alt="Dr. Manoj Kumar Agrawal - Managing Director"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      onError={(e) => {
-                        if (e.target.src.includes('.png')) {
-                          e.target.src = '/images/leadership/managing-director.jpg';
-                        } else {
-                          e.target.style.display = 'none';
-                          e.target.nextElementSibling.style.display = 'flex';
-                        }
-                      }}
-                    />
-                    <div className="absolute inset-0 w-full h-full bg-gradient-to-l from-primary-900/30 to-transparent flex items-center justify-center" style={{display: 'none'}}>
-                      <FaRocket size={80} className="text-white" />
+                  {/* Content - Full Width */}
+                  <div className="text-center mb-6">
+                    <h3 className="text-3xl font-bold text-gray-900 mb-2">Mr. Krishna Kumar Agrawal</h3>
+                    <p className="text-lg text-primary-600 font-semibold">Chairman & Founder</p>
+                  </div>
+
+                  <div className="space-y-4">
+                      <p className="text-gray-700 leading-relaxed">
+                        Mr. Krishna Kumar Agrawal is the esteemed Chairman and Founder of the Krishna Care group. As a foundational pillar of the organization, his leadership and vision have been the primary architects of the company's enduring success and sterling reputation in the logistics and C&F industry. With a career spanning over two decades, he has cultivated a business ethos centered on an unwavering commitment to excellence and stakeholder satisfaction.
+                      </p>
+
+                      <div>
+                        <h4 className="text-xl font-bold text-primary-900 mb-3">Core Philosophy: The Pursuit of Total Service Satisfaction</h4>
+                        <p className="text-gray-700 leading-relaxed mb-3">
+                          At the heart of Mr. Agrawal's business philosophy is the principle of total service satisfaction. He views this not merely as a goal but as the absolute cornerstone of the company's quality service framework. This commitment goes beyond simply meeting contractual obligations; it is a proactive and dynamic process.
+                        </p>
+                        <ul className="space-y-2 ml-4">
+                          <li className="text-gray-700 leading-relaxed flex items-start">
+                            <span className="text-primary-600 mr-2 mt-1">•</span>
+                            <span><strong>Anticipating Client Needs:</strong> He has instilled a culture of proactively identifying the evolving service-oriented needs of clients, often before they are explicitly stated.</span>
+                          </li>
+                          <li className="text-gray-700 leading-relaxed flex items-start">
+                            <span className="text-primary-600 mr-2 mt-1">•</span>
+                            <span><strong>Translating Needs into Quality:</strong> His leadership ensures that these identified needs are meticulously translated into tangible, high-quality service offerings that deliver measurable value and build long-term trust.</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h4 className="text-xl font-bold text-primary-900 mb-3">Leadership Style: Empowering People for Collective Success</h4>
+                        <p className="text-gray-700 leading-relaxed">
+                          Mr. Agrawal firmly believes that the organization's most valuable asset is its people. He plans to achieve his strategic goals by leveraging the strength of the company's employees. This employee-centric approach is fundamental to the company's operational model. He recognizes that the organization's success is a direct result of the hard work and continuous involvement of its team.
+                        </p>
+                        <p className="text-gray-700 leading-relaxed mt-3">
+                          This leadership style has fostered a culture of ownership, responsibility, and mutual respect throughout the organization. By empowering his workforce, he ensures that every member of the Krishna Care team is aligned with and actively contributing to the overarching objective of achieving exceptional service quality.
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 className="text-xl font-bold text-primary-900 mb-3">Legacy and Impact</h4>
+                        <p className="text-gray-700 leading-relaxed">
+                          Under Mr. Agrawal's guidance, Krishna Care has grown from a vision into a formidable enterprise with state-of-the-art infrastructure, a prestigious client portfolio, and a reputation for reliability. His foundational principles of prioritizing both customer satisfaction and employee empowerment remain the driving force behind the group's continued growth and market leadership. He has not just built a company; he has built a legacy of quality and integrity.
+                        </p>
+                      </div>
                     </div>
-                    {/* Overlay gradient - only at bottom */}
-                    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/60 to-transparent"></div>
+                </div>
+              </motion.div>
+            )}
 
-                    {/* Name overlay on image */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
-                      <h3 className="text-3xl font-bold mb-1">Dr. Manoj Kumar Agrawal</h3>
-                      <p className="text-lg font-semibold text-yellow-400">Managing Director & Founding Member</p>
+            {/* Manoj Kumar Agrawal Tab */}
+            {activeLeaderTab === 'manoj' && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="group"
+              >
+                <div className="bg-white rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500">
+                  {/* Photo - Top Center (Circular) */}
+                  <div className="flex justify-center mb-6">
+                    <div className="w-48 h-48 rounded-full overflow-hidden bg-gradient-to-br from-yellow-400 to-orange-500 p-1 shadow-2xl group-hover:scale-105 transition-transform duration-500">
+                      <div className="w-full h-full rounded-full overflow-hidden bg-white p-2">
+                        <img
+                          src="/images/leadership/managing-director.png"
+                          alt="Dr. Manoj Kumar Agrawal - Managing Director"
+                          className="w-full h-full object-cover rounded-full"
+                          onError={(e) => {
+                            if (e.target.src.includes('.png')) {
+                              e.target.src = '/images/leadership/managing-director.jpg';
+                            }
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Content */}
-                <div className="p-8 flex-1 flex flex-col">
-                  <div className="space-y-4 flex-1">
-                    <p className="text-gray-700 leading-relaxed">
-                      Dr. Manoj Kumar Agrawal, the Managing Director and a Founding Member of Krishna Care, is a pivotal force behind the company's strategic direction and sustained growth. His leadership is characterized by a deep understanding of complex supply chains and a forward-thinking approach to business development. Dr. Agrawal's insights have been instrumental in shaping Krishna Care into the industry leader it is today.
-                    </p>
-
-                    <div>
-                      <h4 className="text-xl font-bold text-primary-900 mb-3">Deep Industry Expertise</h4>
-                      <p className="text-gray-700 leading-relaxed mb-3">
-                        Dr. Agrawal brings to the organization a wealth of specialized experience in the Pharmaceutical, Agriculture, and Paints industries, particularly within Clearing and Forwarding Agent (CFA) operations. This hands-on expertise allows him to understand the unique logistical challenges and regulatory nuances of each sector.
-                      </p>
-                      <p className="text-gray-700 leading-relaxed">
-                        This deep knowledge has enabled Krishna Care to offer highly tailored, efficient, and compliant solutions that meet the stringent demands of its diverse clientele. His sector-specific insights ensure that the company stays ahead of industry trends and regulatory requirements.
-                      </p>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xl font-bold text-primary-900 mb-3">The Architect of Growth</h4>
-                      <p className="text-gray-700 leading-relaxed">
-                        As the primary driver of the company's expansion, Dr. Agrawal is the prime mover behind various strategic alliances and ambitious growth plans. His dynamic leadership has been the catalyst for transforming the company into a major player within its key markets.
-                      </p>
-                      <p className="text-gray-700 leading-relaxed mt-3">
-                        He excels at identifying new opportunities, forging powerful partnerships, and executing strategies that enhance market presence and drive operational excellence. His strategic acumen has positioned Krishna Care as a preferred logistics partner across multiple industry verticals.
-                      </p>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xl font-bold text-primary-900 mb-3">A Vision for the Future: "A Global C&F"</h4>
-                      <p className="text-gray-700 leading-relaxed">
-                        Dr. Agrawal's ultimate vision is to establish Krishna Care as "A Global C&F" company. This ambitious goal is not merely about expanding the company's geographical footprint. It is rooted in a profound commitment to fostering healthier and more sustainable business partnerships worldwide.
-                      </p>
-                      <p className="text-gray-700 leading-relaxed mt-3">
-                        He aims to build a global logistics network that operates on principles of integrity, transparency, and mutual growth, setting a new standard for what a modern, responsible C&F partner can be. His leadership continues to steer the company towards this inspiring future, ensuring Krishna Care remains at the forefront of the logistics industry.
-                      </p>
-                    </div>
+                  {/* Content - Full Width */}
+                  <div className="text-center mb-6">
+                    <h3 className="text-3xl font-bold text-gray-900 mb-2">Dr. Manoj Kumar Agrawal</h3>
+                    <p className="text-lg text-primary-600 font-semibold">Managing Director & Founding Member</p>
                   </div>
+
+                  <div className="space-y-4">
+                      <p className="text-gray-700 leading-relaxed">
+                        Dr. Manoj Kumar Agrawal, the Managing Director and a Founding Member of Krishna Care, is a pivotal force behind the company's strategic direction and sustained growth. His leadership is characterized by a deep understanding of complex supply chains and a forward-thinking approach to business development. Dr. Agrawal's insights have been instrumental in shaping Krishna Care into the industry leader it is today.
+                      </p>
+
+                      <div>
+                        <h4 className="text-xl font-bold text-primary-900 mb-3">Deep Industry Expertise</h4>
+                        <p className="text-gray-700 leading-relaxed mb-3">
+                          Dr. Agrawal brings to the organization a wealth of specialized experience in the Pharmaceutical, Agriculture, and Paints industries, particularly within Clearing and Forwarding Agent (CFA) operations. This hands-on expertise allows him to understand the unique logistical challenges and regulatory nuances of each sector.
+                        </p>
+                        <p className="text-gray-700 leading-relaxed">
+                          This deep knowledge has enabled Krishna Care to offer highly tailored, efficient, and compliant solutions that meet the stringent demands of its diverse clientele. His sector-specific insights ensure that the company stays ahead of industry trends and regulatory requirements.
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 className="text-xl font-bold text-primary-900 mb-3">The Architect of Growth</h4>
+                        <p className="text-gray-700 leading-relaxed">
+                          As the primary driver of the company's expansion, Dr. Agrawal is the prime mover behind various strategic alliances and ambitious growth plans. His dynamic leadership has been the catalyst for transforming the company into a major player within its key markets.
+                        </p>
+                        <p className="text-gray-700 leading-relaxed mt-3">
+                          He excels at identifying new opportunities, forging powerful partnerships, and executing strategies that enhance market presence and drive operational excellence. His strategic acumen has positioned Krishna Care as a preferred logistics partner across multiple industry verticals.
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 className="text-xl font-bold text-primary-900 mb-3">A Vision for the Future: "A Global C&F"</h4>
+                        <p className="text-gray-700 leading-relaxed">
+                          Dr. Agrawal's ultimate vision is to establish Krishna Care as "A Global C&F" company. This ambitious goal is not merely about expanding the company's geographical footprint. It is rooted in a profound commitment to fostering healthier and more sustainable business partnerships worldwide.
+                        </p>
+                        <p className="text-gray-700 leading-relaxed mt-3">
+                          He aims to build a global logistics network that operates on principles of integrity, transparency, and mutual growth, setting a new standard for what a modern, responsible C&F partner can be. His leadership continues to steer the company towards this inspiring future, ensuring Krishna Care remains at the forefront of the logistics industry.
+                        </p>
+                      </div>
+                    </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            )}
           </div>
         </div>
       </section>

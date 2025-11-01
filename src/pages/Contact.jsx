@@ -200,13 +200,13 @@ const Contact = () => {
               {
                 icon: <FaMapMarkerAlt size={24} />,
                 title: t(contactTranslations.info.address.title),
-                details: ['Krishna Care (Gondwara)', 'Ring Road No., Gondwara Raipur (C.G.)'],
+                details: ['Krishna Care (Gondwara)', 'Ring Road No. 2, Gondwara Raipur (C.G.)'],
                 color: 'from-purple-500 to-purple-600'
               },
               {
                 icon: <FaClock size={24} />,
                 title: t(contactTranslations.info.hours.title),
-                details: ['Business Hours: 9 AM - 6 PM', 'Emergency: 24/7 Available'],
+                details: ['Business Hours: 10 AM - 7 PM', 'Emergency: 24/7 Available'],
                 color: 'from-orange-500 to-orange-600'
               }
             ].map((info, index) => (
